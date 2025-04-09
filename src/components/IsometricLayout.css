@@ -1,0 +1,284 @@
+/* IsometricLayout.css */
+.isometric-layout {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #0a0a0a;
+    color: #fff;
+    overflow: hidden;
+  }
+  
+  /* Boid logo */
+  .boid-logo {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+    height: 100px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .boid-logo img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  
+  /* Section title */
+  .section-title {
+    position: absolute;
+    top: 180px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-family: 'VT323', monospace;
+    font-size: 32px;
+    color: #2ecc71; /* Green color as seen in your image */
+  }
+  
+  .section-subtitle {
+    position: absolute;
+    top: 220px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-family: 'VT323', monospace;
+    font-size: 16px;
+    color: #2ecc71;
+  }
+  
+  /* Isometric Cube - Using your exact CSS */
+  .isometric-cube {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  
+  /* Isometric Cube Parts - Using your exact transformations */
+  .isometric-cube-top {
+    width: 100%;
+    height: 100%;
+    background: #085bb5; /* Default blue color */
+    transform-origin: 0 0;
+    transform: rotate(210deg) skewX(-30deg) scaleY(0.864);
+  }
+  
+  .isometric-cube-right {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: #043468; /* Darker blue */
+    transform-origin: 0 0;
+    transform: rotate(-30deg) skewX(-30deg) translate(0, -113px) scaleY(0.864);
+  }
+  
+  .isometric-cube-left {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-origin: 0 0;
+    background: #4fa0f8; /* Lighter blue */
+    transform: rotate(90deg) skewX(-30deg) scaleY(0.864) translate(-100%, 0);
+  }
+  
+  /* Cube colors */
+  .isometric-cube.purple .isometric-cube-top {
+    background: #8b5cf6;
+  }
+  
+  .isometric-cube.purple .isometric-cube-right {
+    background: #6d28d9;
+  }
+  
+  .isometric-cube.purple .isometric-cube-left {
+    background: #a78bfa;
+  }
+  
+  .isometric-cube.gold .isometric-cube-top {
+    background: #eab308;
+  }
+  
+  .isometric-cube.gold .isometric-cube-right {
+    background: #ca8a04;
+  }
+  
+  .isometric-cube.gold .isometric-cube-left {
+    background: #fcd34d;
+  }
+  
+  .isometric-cube.grey .isometric-cube-top {
+    background: #9ca3af;
+  }
+  
+  .isometric-cube.grey .isometric-cube-right {
+    background: #6b7280;
+  }
+  
+  .isometric-cube.grey .isometric-cube-left {
+    background: #d1d5db;
+  }
+  
+  .isometric-cube.blue .isometric-cube-top {
+    background: #3b82f6;
+  }
+  
+  .isometric-cube.blue .isometric-cube-right {
+    background: #1d4ed8;
+  }
+  
+  .isometric-cube.blue .isometric-cube-left {
+    background: #60a5fa;
+  }
+  
+  /* Hover and active states */
+  .isometric-cube:hover {
+    transform: translateY(-5px);
+  }
+  
+  .isometric-cube.active {
+    transform: translateY(-10px);
+  }
+  
+  /* Cube label */
+  .cube-label {
+    position: absolute;
+    top: -30px;
+    width: 100%;
+    text-align: center;
+    font-family: 'VT323', monospace;
+    font-size: 16px;
+    color: white;
+    text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Q*bert character */
+  .qbert-character {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    transition: all 0.3s ease;
+  }
+  
+  .qbert-sprite {
+    width: 100%;
+    height: 100%;
+    background-color: #FF4500; /* Orange color */
+    border-radius: 5px;
+    position: relative;
+  }
+  
+  /* Eyes */
+  .qbert-sprite:before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    width: 8px;
+    height: 8px;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 16px 0 0 white; /* Second eye */
+  }
+  
+  /* Pupils */
+  .qbert-sprite:after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 4px;
+    height: 4px;
+    background-color: black;
+    border-radius: 50%;
+    box-shadow: 16px 0 0 black; /* Second pupil */
+  }
+  
+  /* Speech bubble */
+  .speech-bubble {
+    position: absolute;
+    top: -30px;
+    left: 20px;
+    background-color: white;
+    color: black;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-family: 'VT323', monospace;
+    font-size: 12px;
+    white-space: nowrap;
+    z-index: 100;
+  }
+  
+  .speech-bubble:after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 10px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid white;
+  }
+  
+  /* Page content section */
+  .page-content {
+    position: relative;
+    max-width: 800px;
+    margin: 300px auto 50px;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 2px solid #2ecc71;
+    z-index: 5;
+  }
+  
+  /* Content box styling */
+  .content-box {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border: 1px solid #2ecc71;
+    font-family: 'VT323', monospace;
+  }
+  
+  .content-box h2 {
+    color: #2ecc71;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  
+  .content-box p {
+    color: #fff;
+    font-size: 18px;
+    line-height: 1.5;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 1024px) {
+    .isometric-cube {
+      transform: scale(0.8);
+    }
+    
+    .cube-label {
+      font-size: 14px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .isometric-cube {
+      transform: scale(0.6);
+    }
+    
+    .cube-label {
+      font-size: 12px;
+    }
+    
+    .qbert-character {
+      width: 30px;
+      height: 30px;
+    }
+  }

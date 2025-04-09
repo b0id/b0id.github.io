@@ -1,0 +1,234 @@
+/* QBertSprite.css */
+.qbert-sprite {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    z-index: 100;
+    transition: top 0.3s ease-out, left 0.3s ease-out;
+    filter: drop-shadow(3px 3px 2px rgba(0, 0, 0, 0.3));
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+  }
+  
+  /* Main body */
+  .qbert-body {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #FF4500; /* bright red-orange */
+    border-radius: 8px;
+    transform-origin: center bottom;
+  }
+  
+  /* Eyes */
+  .qbert-eyes {
+    position: absolute;
+    width: 100%;
+    top: 10px;
+    display: flex;
+    justify-content: space-around;
+    padding: 0 10px;
+  }
+  
+  .qbert-eye {
+    width: 12px;
+    height: 12px;
+    background-color: white;
+    border-radius: 50%;
+    position: relative;
+  }
+  
+  .qbert-eye:after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 6px;
+    height: 6px;
+    background-color: black;
+    border-radius: 50%;
+  }
+  
+  /* Nose */
+  .qbert-nose {
+    position: absolute;
+    width: 20px;
+    height: 12px;
+    background-color: #FF6347; /* slightly lighter orange-red */
+    border-radius: 6px;
+    top: 25px;
+    right: -10px;
+  }
+  
+  /* Legs (only visible during jumping) */
+  .qbert-legs {
+    position: absolute;
+    width: 100%;
+    height: 10px;
+    bottom: -8px;
+    display: flex;
+    justify-content: space-around;
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  
+  .qbert-sprite.jumping .qbert-legs {
+    opacity: 1;
+  }
+  
+  .qbert-leg {
+    width: 8px;
+    height: 12px;
+    background-color: #FF4500;
+    border-radius: 0 0 4px 4px;
+  }
+  
+  /* Speech bubble */
+  .qbert-speech-bubble {
+    position: absolute;
+    top: -40px;
+    right: -30px;
+    background-color: white;
+    color: black;
+    padding: 8px 12px;
+    border-radius: 15px;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 12px;
+    white-space: nowrap;
+    animation: pop-in 0.3s ease-out;
+    z-index: 101;
+  }
+  
+  .speech-pointer {
+    position: absolute;
+    bottom: -10px;
+    left: 20px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 15px solid white;
+  }
+  
+  /* Animation states */
+  .qbert-sprite.jumping .qbert-body {
+    animation: squash-and-stretch 0.6s ease-in-out;
+  }
+  
+  .qbert-sprite.idle .qbert-body {
+    animation: idle-bob 2s infinite alternate ease-in-out;
+  }
+  
+  /* Animations */
+  @keyframes pop-in {
+    0% { transform: scale(0); opacity: 0; }
+    80% { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  
+  @keyframes squash-and-stretch {
+    0% { transform: scaleY(1) scaleX(1); }
+    25% { transform: scaleY(0.8) scaleX(1.2); }
+    50% { transform: scaleY(1.2) scaleX(0.8); }
+    75% { transform: scaleY(0.9) scaleX(1.1); }
+    100% { transform: scaleY(1) scaleX(1); }
+  }
+  
+  @keyframes idle-bob {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(2px); }
+  }
+  
+  /* Pixel art effect */
+  .qbert-sprite::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      to right,
+      transparent 0%,
+      transparent 50%,
+      rgba(0, 0, 0, 0.05) 50%,
+      rgba(0, 0, 0, 0.05) 100%
+    ),
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 50%,
+      rgba(0, 0, 0, 0.05) 50%,
+      rgba(0, 0, 0, 0.05) 100%
+    );
+    background-size: 4px 4px;
+    pointer-events: none;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .qbert-sprite {
+      width: 40px;
+      height: 40px;
+    }
+    
+    .qbert-eye {
+      width: 10px;
+      height: 10px;
+    }
+    
+    .qbert-eye:after {
+      width: 5px;
+      height: 5px;
+    }
+    
+    .qbert-nose {
+      width: 16px;
+      height: 10px;
+      top: 20px;
+    }
+    
+    .qbert-speech-bubble {
+      font-size: 10px;
+      padding: 6px 10px;
+      top: -35px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .qbert-sprite {
+      width: 30px;
+      height: 30px;
+    }
+    
+    .qbert-eyes {
+      top: 6px;
+    }
+    
+    .qbert-eye {
+      width: 8px;
+      height: 8px;
+    }
+    
+    .qbert-eye:after {
+      width: 4px;
+      height: 4px;
+      top: 2px;
+      left: 2px;
+    }
+    
+    .qbert-nose {
+      width: 12px;
+      height: 8px;
+      top: 15px;
+      right: -8px;
+    }
+    
+    .qbert-speech-bubble {
+      font-size: 8px;
+      padding: 4px 8px;
+      top: -30px;
+      right: -20px;
+    }
+  }

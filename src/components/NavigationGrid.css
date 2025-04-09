@@ -1,25 +1,219 @@
-.navigation-grid {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin: 20px;
+/* Q*bert style navigation grid */
+.qbert-navigation-grid {
+  position: relative;
+  width: 100%;
+  margin: 40px auto;
+  perspective: 1000px;
+  max-width: 800px;
+}
+
+/* Base cube styling */
+.qbert-cube {
+  position: absolute;
+  width: 100px;
+  height: 60px;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+}
+
+/* Cube faces */
+.qbert-cube:before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform: rotateX(60deg) rotateZ(0deg);
+  background-color: #ccc; /* Default top face */
+  transform-origin: bottom;
+}
+
+.qbert-cube .cube-left {
+  position: absolute;
+  width: 100%;
+  height: 58px;
+  transform: rotateX(-30deg) rotateY(-60deg) translateX(-50px) translateY(29px);
+  background-color: #999; /* Default left face */
+  transform-origin: right;
+}
+
+.qbert-cube .cube-right {
+  position: absolute;
+  width: 100%;
+  height: 58px;
+  transform: rotateX(-30deg) rotateY(60deg) translateX(50px) translateY(29px);
+  background-color: #666; /* Default right face */
+  transform-origin: left;
+}
+
+/* Cube colors based on the reference image */
+.qbert-cube.purple:before {
+  background-color: #8b5cf6; /* Top face */
+}
+.qbert-cube.purple .cube-left {
+  background-color: #7c3aed; /* Left face */
+}
+.qbert-cube.purple .cube-right {
+  background-color: #6d28d9; /* Right face */
+}
+
+.qbert-cube.yellow:before {
+  background-color: #fef08a; /* Top face */
+}
+.qbert-cube.yellow .cube-left {
+  background-color: #fde047; /* Left face */
+}
+.qbert-cube.yellow .cube-right {
+  background-color: #facc15; /* Right face */
+}
+
+.qbert-cube.gray:before {
+  background-color: #e5e7eb; /* Top face */
+}
+.qbert-cube.gray .cube-left {
+  background-color: #d1d5db; /* Left face */
+}
+.qbert-cube.gray .cube-right {
+  background-color: #9ca3af; /* Right face */
+}
+
+/* Hover and active states */
+.qbert-cube:hover {
+  transform: translateY(-10px);
+}
+
+.qbert-cube.active {
+  transform: translateY(-15px);
+}
+
+/* Section label */
+.cube-label {
+  position: absolute;
+  top: -30px;
+  width: 100%;
+  text-align: center;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 12px;
+  color: white;
+  text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+/* Q*bert avatar styling */
+.qbert-avatar {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background-color: #ff4500; /* Red-orange color for Q*bert */
+  border-radius: 5px;
+  transform: translateZ(20px);
+  transition: all 0.3s ease;
+  z-index: 100;
+}
+
+/* Q*bert features */
+.qbert-avatar:before {
+  content: '';
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 10px;
+  height: 10px;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 15px 0 0 white; /* Second eye */
+}
+
+.qbert-avatar:after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 4px;
+  height: 4px;
+  background-color: black;
+  border-radius: 50%;
+  box-shadow: 15px 0 0 black; /* Second pupil */
+}
+
+/* Speech bubble */
+.qbert-speech {
+  position: absolute;
+  top: -30px;
+  left: 20px;
+  background-color: white;
+  color: black;
+  padding: 5px 10px;
+  border-radius: 10px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.qbert-speech:after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 10px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid white;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .qbert-cube {
+    width: 80px;
+    height: 50px;
   }
   
-  .nav-cube {
-    width: 100px;
-    height: 100px;
-    background: #333;
-    transform: skewY(-20deg) rotate(45deg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-family: 'Press Start 2P', cursive;
-    cursor: pointer;
-    transition: transform 0.3s;
+  .qbert-cube .cube-left,
+  .qbert-cube .cube-right {
+    height: 48px;
   }
   
-  .nav-cube:hover {
-    transform: skewY(-20deg) rotate(45deg) scale(1.1);
+  .cube-label {
+    font-size: 10px;
+    top: -25px;
   }
   
+  .qbert-avatar {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .qbert-avatar:before {
+    top: 4px;
+    left: 4px;
+    width: 8px;
+    height: 8px;
+    box-shadow: 10px 0 0 white;
+  }
+  
+  .qbert-avatar:after {
+    top: 6px;
+    left: 6px;
+    width: 3px;
+    height: 3px;
+    box-shadow: 10px 0 0 black;
+  }
+}
+
+@media (max-width: 480px) {
+  .qbert-cube {
+    width: 60px;
+    height: 40px;
+  }
+  
+  .qbert-cube .cube-left,
+  .qbert-cube .cube-right {
+    height: 38px;
+  }
+  
+  .cube-label {
+    font-size: 8px;
+    top: -20px;
+  }
+}
