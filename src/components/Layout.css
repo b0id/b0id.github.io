@@ -1,0 +1,39 @@
+/* src/components/Layout.css */
+
+.layout {
+    position: relative;
+    min-height: 100vh;
+    padding-bottom: 50px;
+    background: #000;
+    color: #fff;
+    font-family: sans-serif;
+  }
+  
+  .header {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .retro-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 12px;
+    line-height: 1.2;
+    white-space: pre;
+    margin: 0;
+  }
+  
+  .content {
+    padding: 20px;
+    z-index: 2;
+    position: relative;
+  }
+  
+  footer {
+    text-align: center;
+    padding: 10px;
+    background: #222;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    z-index: 2;
+  }

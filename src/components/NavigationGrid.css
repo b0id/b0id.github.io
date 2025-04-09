@@ -1,0 +1,25 @@
+.navigation-grid {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px;
+  }
+  
+  .nav-cube {
+    width: 100px;
+    height: 100px;
+    background: #333;
+    transform: skewY(-20deg) rotate(45deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-family: 'Press Start 2P', cursive;
+    cursor: pointer;
+    transition: transform 0.3s;
+  }
+  
+  .nav-cube:hover {
+    transform: skewY(-20deg) rotate(45deg) scale(1.1);
+  }
+  
