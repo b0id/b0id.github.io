@@ -1,0 +1,318 @@
+/* SimplifiedLayout.css */
+
+/* Import fonts (can be removed if only defined in index.css) */
+/* @import url('...'); */
+
+/* Base styles and NEW theme variables */
+:root {
+    /* Muted Modern Retro Theme Colors */
+    --default-color: #8a8aff; /* Muted Purple */
+    --default-light: #aaaaff;
+    --default-dark: #6a6acc;
+  
+    --nursing-color: #ff8a8a; /* Muted Red */
+    --nursing-light: #ffaaaa;
+    --nursing-dark: #cc6a6a;
+  
+    --electronics-color: #8aff8a; /* Muted Green */
+    --electronics-light: #aaffaa;
+    --electronics-dark: #6acc6a;
+  
+    --engineering-color: #8ae8ff; /* Muted Blue */
+    --engineering-light: #aaf0ff;
+    --engineering-dark: #6accdc;
+  
+    --life-color: #ffd08a; /* Muted Orange */
+    --life-light: #ffe0aa;
+    --life-dark: #ccaa6a;
+  
+    --about-color: #c08aff; /* Muted Lavender */
+    --about-light: #d0aaff;
+    --about-dark: #a06acc;
+  
+    /* Core UI colors */
+    --bg-color: #1a1a1d;
+    --panel-bg: #242428; /* Slightly lighter panel background */
+    --panel-bg-hover: #2d2d32;
+    --border-color: rgba(255, 255, 255, 0.1); /* Subtle border color */
+    --text-color: #e1e1e1;
+    --text-secondary: #a0a0a0; /* Muted secondary text */
+  
+    /* Spacing */
+    --space-xs: 0.5rem;
+    --space-sm: 0.75rem; /* Slightly reduced spacing */
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+  
+    /* Borders */
+    --border-radius: 6px; /* Soften corners */
+  }
+  
+  /* Layout base - Constrain to viewport height */
+  .layout {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Fill viewport height */
+    max-height: 100vh;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Inter', sans-serif; /* Ensure consistent font */
+  }
+  
+  /* Theme colors application */
+  .layout.default { --theme-color: var(--default-color); --theme-light: var(--default-light); --theme-dark: var(--default-dark); }
+  .layout.nursing { --theme-color: var(--nursing-color); --theme-light: var(--nursing-light); --theme-dark: var(--nursing-dark); }
+  .layout.electronics { --theme-color: var(--electronics-color); --theme-light: var(--electronics-light); --theme-dark: var(--electronics-dark); }
+  .layout.engineering { --theme-color: var(--engineering-color); --theme-light: var(--engineering-light); --theme-dark: var(--engineering-dark); }
+  .layout.life { --theme-color: var(--life-color); --theme-light: var(--life-light); --theme-dark: var(--life-dark); }
+  .layout.about { --theme-color: var(--about-color); --theme-light: var(--about-light); --theme-dark: var(--about-dark); }
+  
+  /* Header styles */
+  .site-header {
+    padding: var(--space-sm) var(--space-md);
+    text-align: center;
+    background-color: var(--panel-bg);
+    border-bottom: 1px solid var(--border-color); /* Subtle border */
+    flex-shrink: 0; /* Prevent header from shrinking */
+  }
+  
+  .site-name {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.5rem; /* Slightly smaller */
+    color: var(--theme-color);
+    margin-bottom: 0; /* Reduced spacing */
+  }
+  
+  .site-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-top: var(--space-xs);
+  }
+  
+  /* Page layout - Occupy remaining height */
+  .page-layout {
+    display: flex;
+    flex-grow: 1; /* Take remaining vertical space */
+    padding: var(--space-md);
+    gap: var(--space-md);
+    overflow: hidden; /* Prevent page-layout itself from scrolling */
+    min-height: 0; /* Crucial for flex children height calculation */
+  }
+  
+  /* Sidebar styles */
+  .sidebar {
+    width: 240px; /* Slightly narrower */
+    flex-shrink: 0;
+    background-color: var(--panel-bg);
+    border-radius: var(--border-radius);
+    padding: var(--space-sm);
+    border: 1px solid var(--border-color);
+    overflow-y: auto; /* Allow sidebar scrolling if needed */
+  }
+  
+  .navigation-menu {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+  
+  .nav-item {
+    padding: var(--space-sm);
+    background-color: transparent; /* Use sidebar background */
+    border-radius: calc(var(--border-radius) - 2px);
+    text-decoration: none;
+    color: var(--text-color);
+    border-left: 3px solid transparent; /* Subtle indicator */
+    transition: background-color 0.2s ease, border-left-color 0.2s ease;
+  }
+  
+  .nav-item:hover {
+    background-color: var(--panel-bg-hover);
+    border-left-color: var(--text-secondary); /* Indicate hover */
+    transform: none; /* Remove previous transform */
+  }
+  
+  .nav-item.active {
+    background-color: rgba(0, 0, 0, 0.2); /* Subtle active background */
+    border-left-color: var(--theme-color); /* Use theme color for active */
+  }
+  
+  /* No separate theme colors needed if using .active with --theme-color */
+  
+  .nav-name {
+    font-weight: 600; /* Slightly less bold */
+    margin-bottom: var(--space-xs);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.85rem;
+    color: var(--theme-color);
+  }
+  
+  .nav-desc {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.4; /* Improve readability */
+  }
+  
+  /* Main content area */
+  .main-content {
+    flex-grow: 1; /* Take remaining horizontal space */
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    overflow: hidden; /* Prevent this from scrolling */
+  }
+  
+  /* Page header within main content */
+  .page-header {
+    text-align: left; /* Align left for dashboard feel */
+    margin-bottom: var(--space-md);
+    padding: 0 var(--space-sm); /* Add some padding */
+    flex-shrink: 0; /* Prevent shrinking */
+  }
+  
+  .page-title {
+    font-size: 1.3rem;
+    margin-bottom: var(--space-xs);
+  }
+  
+  .page-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+  }
+  
+  /* Wrapper for Q*bert and Content */
+  .center-right-wrapper {
+    display: flex;
+    flex-grow: 1; /* Takes remaining vertical space in main-content */
+    gap: var(--space-md);
+    overflow: hidden; /* Important */
+    min-height: 0; /* Crucial for flex children height calculation */
+  }
+  
+  /* Q*bert navigation container */
+  .qbert-navigation {
+    flex-basis: 400px; /* Adjust width */
+    flex-shrink: 0;
+    margin-bottom: 0;
+    background-color: var(--panel-bg);
+    border-radius: var(--border-radius);
+    padding: var(--space-sm);
+    border: 1px solid var(--border-color);
+    display: flex; /* Center canvas if needed */
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Hide canvas overflow */
+  }
+  
+  /* Content container - Scrollable */
+  .content-container {
+    flex-grow: 1;
+    background-color: var(--panel-bg);
+    border-radius: var(--border-radius);
+    padding: var(--space-md);
+    border: 1px solid var(--border-color);
+    min-width: 0;
+    overflow-y: auto; /* ENABLE SCROLLING HERE */
+  }
+  
+  /* Footer */
+  .site-footer {
+    padding: var(--space-sm);
+    text-align: center;
+    background-color: var(--panel-bg);
+    border-top: 1px solid var(--border-color);
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    flex-shrink: 0; /* Prevent footer from shrinking */
+  }
+  
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-md);
+    margin-top: var(--space-xs);
+  }
+  
+  .social-links a {
+    color: var(--text-secondary); /* Muted social links */
+    font-size: 0.8rem;
+  }
+  
+  .social-links a:hover {
+    color: var(--theme-light);
+    text-decoration: none; /* Remove underline on hover */
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 1024px) {
+    .sidebar {
+      width: 200px; /* Narrower sidebar on medium screens */
+    }
+    .qbert-navigation {
+      flex-basis: 350px; /* Adjust Qbert width */
+    }
+    .nav-name { font-size: 0.8rem; }
+    .nav-desc { display: none; } /* Hide description */
+  }
+  
+  @media (max-width: 768px) {
+    .page-layout {
+      flex-direction: column;
+      padding: var(--space-sm); /* Reduce padding on mobile */
+      gap: var(--space-sm);
+    }
+  
+    .sidebar {
+      width: 100%;
+      order: 1; /* Move sidebar below main content potentially */
+      max-height: 150px; /* Limit height when stacked */
+      overflow-y: auto;
+    }
+  
+    .navigation-menu {
+      flex-direction: row; /* Horizontal scrolling */
+      overflow-x: auto;
+      padding-bottom: var(--space-sm); /* Space for scrollbar */
+    }
+  
+    .nav-item {
+      flex: 0 0 auto; /* Prevent shrinking/growing */
+      width: 120px; /* Fixed width for horizontal items */
+      border-left-width: 0; /* Remove side border */
+      border-bottom: 3px solid transparent; /* Use bottom border */
+    }
+     .nav-item:hover {
+      border-bottom-color: var(--text-secondary);
+    }
+    .nav-item.active {
+      border-bottom-color: var(--theme-color);
+    }
+    .nav-name { text-align: center; margin-bottom: 0; }
+    .nav-desc { display: none; }
+  
+    .main-content {
+      order: 0; /* Put main content first */
+    }
+  
+    .center-right-wrapper {
+      flex-direction: column; /* Stack Q*bert and Content */
+      gap: var(--space-sm);
+    }
+  
+    .qbert-navigation {
+      flex-basis: auto;
+      width: 100%;
+      height: 300px; /* Fixed height on mobile */
+      margin-bottom: 0; /* Gap handles spacing */
+    }
+  
+    .content-container {
+      flex-grow: 1; /* Allow it to take space, scrolling handles overflow */
+    }
+  
+    .site-header, .site-footer {
+      padding: var(--space-sm);
+    }
+    .site-name { font-size: 1.2rem; }
+    .page-title { font-size: 1.1rem; }
+  }

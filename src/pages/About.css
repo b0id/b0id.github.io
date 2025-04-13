@@ -1,0 +1,217 @@
+/* About page styles */
+.about-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding-bottom: 2rem;
+  }
+  
+  /* Glass panel effect for sections */
+  .glass-panel {
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
+    border-radius: 8px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .glass-panel:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Header with portrait */
+  .about-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding: 2rem;
+  }
+  
+  .pixel-portrait {
+    width: 120px;
+    height: 120px;
+    background-color: var(--theme-primary);
+    position: relative;
+    image-rendering: pixelated;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+    margin-right: 2rem;
+    flex-shrink: 0;
+  }
+  
+  /* Pixelated face on the portrait */
+  .pixel-portrait:before {
+    content: '';
+    position: absolute;
+    top: 30px;
+    left: 30px;
+    width: 20px;
+    height: 20px;
+    background-color: #000;
+    box-shadow: 40px 0 0 #000;
+  }
+  
+  .pixel-portrait:after {
+    content: '';
+    position: absolute;
+    top: 70px;
+    left: 40px;
+    width: 40px;
+    height: 10px;
+    background-color: #000;
+  }
+  
+  .about-intro {
+    flex-grow: 1;
+  }
+  
+  .about-intro h2 {
+    font-family: 'Press Start 2P', cursive;
+    color: var(--theme-primary);
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+  }
+  
+  .tagline {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+  
+  /* Content sections */
+  .about-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .about-section {
+    margin-bottom: 0.5rem;
+  }
+  
+  .about-section h3 {
+    font-family: 'Press Start 2P', cursive;
+    color: var(--theme-primary);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+  
+  .about-section p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  
+  /* Focus list */
+  .focus-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 1rem 0;
+  }
+  
+  .focus-list li {
+    margin-bottom: 0.8rem;
+    padding-left: 1.5rem;
+    position: relative;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+  
+  .focus-list li:before {
+    content: '>';
+    position: absolute;
+    left: 0;
+    color: var(--theme-primary);
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.7rem;
+  }
+  
+  .focus-highlight {
+    color: var(--theme-primary);
+    font-weight: 600;
+  }
+  
+  /* Contact section */
+  .contact-options {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+  
+  .contact-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-primary);
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 0.8rem 1.2rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+  
+  .contact-link:hover {
+    background-color: var(--theme-primary);
+    color: #000;
+    transform: translateY(-3px);
+  }
+  
+  .contact-icon {
+    margin-right: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .contact-svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+  }
+  
+  .contact-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .about-header {
+      flex-direction: column;
+      text-align: center;
+      padding: 1.5rem;
+    }
+    
+    .pixel-portrait {
+      margin-right: 0;
+      margin-bottom: 1.5rem;
+    }
+    
+    .about-intro h2 {
+      font-size: 1.5rem;
+    }
+    
+    .contact-options {
+      flex-direction: column;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .about-section h3 {
+      font-size: 1rem;
+    }
+    
+    .about-section p,
+    .focus-list li {
+      font-size: 0.9rem;
+    }
+    
+    .contact-link {
+      padding: 0.6rem 1rem;
+    }
+    
+    .contact-svg {
+      width: 16px;
+      height: 16px;
+    }
+  }

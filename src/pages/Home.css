@@ -222,12 +222,12 @@
   .sections-grid {
     grid-template-columns: 1fr 1fr;
   }
-  
+
   .about-content {
     grid-template-columns: 1fr;
     text-align: center;
   }
-  
+
   .pixel-portrait {
     margin: 0 auto 1rem;
   }
@@ -237,7 +237,7 @@
   .sections-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .welcome-box p,
   .about-text p {
     font-size: 1rem;

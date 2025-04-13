@@ -55,16 +55,16 @@ p {
   --primary-color: #7b68ee;      /* Default purple */
   --secondary-color: #5d478b;    /* Darker purple */
   --accent-color: #9d68ee;       /* Lighter purple */
-  
+
   --nursing-primary: #ff6b6b;    /* Red */
   --nursing-secondary: #ee5253;  /* Darker red */
-  
+
   --electronics-primary: #32ff7e; /* Green */
   --electronics-secondary: #3ae374; /* Darker green */
-  
+
   --engineering-primary: #18dcff; /* Blue */
   --engineering-secondary: #17c0eb; /* Darker blue */
-  
+
   --life-primary: #ffad66;        /* Orange */
   --life-secondary: #ff9f43;      /* Darker orange */
 }
@@ -136,15 +136,15 @@ p {
   body {
     font-size: 16px;
   }
-  
+
   h1 {
     font-size: 1.5rem;
   }
-  
+
   h2 {
     font-size: 1.2rem;
   }
-  
+
   h3 {
     font-size: 1rem;
   }
@@ -154,19 +154,19 @@ p {
   body {
     font-size: 14px;
   }
-  
+
   h1 {
     font-size: 1.2rem;
   }
-  
+
   h2 {
     font-size: 1rem;
   }
-  
+
   h3 {
     font-size: 0.8rem;
   }
-  
+
   .pixel-button {
     font-size: 0.7rem;
     padding: 0.4rem 0.8rem;

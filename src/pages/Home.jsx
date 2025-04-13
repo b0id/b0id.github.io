@@ -8,7 +8,7 @@ const Home = () => {
       <div className="welcome-box pixel-box">
         <h2>Welcome to b0id.dev</h2>
         <p>
-          My digital playground exploring the intersections of nursing, electronics, 
+          My digital playground exploring the intersections of nursing, electronics,
           engineering, and science through the lens of emergent behavior.
         </p>
         <p>
@@ -17,10 +17,10 @@ const Home = () => {
           of their parts.
         </p>
       </div>
-      
+
       <div className="sections-container">
         <h2>Explore My Journey</h2>
-        
+
         <div className="sections-grid">
           <div className="section-card nursing-card">
             <h3>Nursing</h3>
@@ -30,7 +30,7 @@ const Home = () => {
             </p>
             <Link to="/nursing" className="pixel-button">Explore</Link>
           </div>
-          
+
           <div className="section-card electronics-card">
             <h3>Electronics</h3>
             <p>
@@ -39,7 +39,7 @@ const Home = () => {
             </p>
             <Link to="/electronics" className="pixel-button">Explore</Link>
           </div>
-          
+
           <div className="section-card engineering-card">
             <h3>Engineering</h3>
             <p>
@@ -48,7 +48,7 @@ const Home = () => {
             </p>
             <Link to="/engineering" className="pixel-button">Explore</Link>
           </div>
-          
+
           <div className="section-card life-card">
             <h3>Life Updates</h3>
             <p>
@@ -59,7 +59,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      
+
       <div className="about-section pixel-box">
         <h2>About Me</h2>
         <div className="about-content">
@@ -84,7 +84,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-      
+
       <div className="navigation-guide pixel-box">
         <h2>Q*bert Navigation</h2>
         <p>
