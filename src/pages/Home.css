@@ -1,0 +1,245 @@
+/* Home page styles */
+.home-page {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Welcome box */
+.welcome-box {
+  margin-bottom: 2rem;
+  text-align: center;
+  padding: 1.5rem;
+  border: 2px solid var(--primary-color);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.welcome-box h2 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.welcome-box p {
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
+}
+
+/* Sections grid */
+.sections-container {
+  margin-bottom: 2rem;
+}
+
+.sections-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: var(--primary-color);
+}
+
+.sections-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+}
+
+.section-card {
+  border: 2px solid;
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.section-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.section-card h3 {
+  margin-bottom: 0.8rem;
+}
+
+.section-card p {
+  flex-grow: 1;
+  margin-bottom: 1.2rem;
+}
+
+/* Section card themes */
+.nursing-card {
+  border-color: var(--nursing-primary);
+  background-color: rgba(255, 107, 107, 0.1);
+}
+
+.nursing-card h3 {
+  color: var(--nursing-primary);
+}
+
+.electronics-card {
+  border-color: var(--electronics-primary);
+  background-color: rgba(50, 255, 126, 0.1);
+}
+
+.electronics-card h3 {
+  color: var(--electronics-primary);
+}
+
+.engineering-card {
+  border-color: var(--engineering-primary);
+  background-color: rgba(24, 220, 255, 0.1);
+}
+
+.engineering-card h3 {
+  color: var(--engineering-primary);
+}
+
+.life-card {
+  border-color: var(--life-primary);
+  background-color: rgba(255, 173, 102, 0.1);
+}
+
+.life-card h3 {
+  color: var(--life-primary);
+}
+
+/* About section */
+.about-section {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+}
+
+.about-section h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: var(--primary-color);
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.pixel-portrait {
+  width: 150px;
+  height: 150px;
+  background-color: var(--primary-color);
+  position: relative;
+  image-rendering: pixelated;
+}
+
+/* Pixelated face on the portrait */
+.pixel-portrait:before {
+  content: '';
+  position: absolute;
+  top: 30px;
+  left: 30px;
+  width: 20px;
+  height: 20px;
+  background-color: #000;
+  box-shadow: 70px 0 0 #000;
+}
+
+.pixel-portrait:after {
+  content: '';
+  position: absolute;
+  top: 80px;
+  left: 50px;
+  width: 50px;
+  height: 10px;
+  background-color: #000;
+}
+
+.about-text p {
+  margin-bottom: 1rem;
+}
+
+/* Navigation guide */
+.navigation-guide {
+  text-align: center;
+  padding: 1.5rem;
+}
+
+.navigation-guide h2 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+/* Section buttons */
+.section-card .pixel-button {
+  align-self: flex-start;
+  background-color: transparent;
+  border: 2px solid;
+  color: inherit;
+  padding: 0.5rem 1rem;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.7rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.nursing-card .pixel-button {
+  border-color: var(--nursing-primary);
+  color: var(--nursing-primary);
+}
+
+.nursing-card .pixel-button:hover {
+  background-color: var(--nursing-primary);
+  color: #000;
+}
+
+.electronics-card .pixel-button {
+  border-color: var(--electronics-primary);
+  color: var(--electronics-primary);
+}
+
+.electronics-card .pixel-button:hover {
+  background-color: var(--electronics-primary);
+  color: #000;
+}
+
+.engineering-card .pixel-button {
+  border-color: var(--engineering-primary);
+  color: var(--engineering-primary);
+}
+
+.engineering-card .pixel-button:hover {
+  background-color: var(--engineering-primary);
+  color: #000;
+}
+
+.life-card .pixel-button {
+  border-color: var(--life-primary);
+  color: var(--life-primary);
+}
+
+.life-card .pixel-button:hover {
+  background-color: var(--life-primary);
+  color: #000;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .sections-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .about-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .pixel-portrait {
+    margin: 0 auto 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .sections-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .welcome-box p,
+  .about-text p {
+    font-size: 1rem;
+  }
+}
