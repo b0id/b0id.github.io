@@ -8,3 +8,11 @@
   image-rendering: -moz-crisp-edges;
   image-rendering: crisp-edges;
 }
+
+.qbert-nav-container {
+  width: 100%;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

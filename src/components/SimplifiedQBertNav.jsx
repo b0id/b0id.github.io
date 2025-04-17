@@ -4,6 +4,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import './QBertNavigation.css';
 
 const SimplifiedQBertNav = () => {
+  console.log("QBertNav rendering...");
   const canvasRef = useRef(null);
   const qbertRef = useRef(null);
   const gridRef = useRef(null);
@@ -80,12 +81,30 @@ const SimplifiedQBertNav = () => {
       const qbert = qbertRef.current; if (!qbert || !qbert.moving) return;
       qbert.jumpProgress += 0.05;
       if (qbert.jumpProgress >= 1) {
-          qbert.jumpProgress = 1; const landedCubeId = qbert.targetCube; qbert.currentCube = landedCubeId; qbert.moving = false; updateQbertPosition();
+          qbert.jumpProgress = 1; 
+          const landedCubeId = qbert.targetCube; 
+          qbert.currentCube = landedCubeId; 
+          qbert.moving = false; 
+          updateQbertPosition();
+          
           // Show standard "@!#?@!" bubble on successful landing
           setSpeechBubbleText("@!#?@!");
           if (speechBubbleTimeoutRef.current) { clearTimeout(speechBubbleTimeoutRef.current); }
-          speechBubbleTimeoutRef.current = setTimeout(() => { setSpeechBubbleText(null); speechBubbleTimeoutRef.current = null; }, 5000);
-          const targetRoute = cubeRoutes[landedCubeId]; if (targetRoute && location.pathname !== targetRoute) { navigate(targetRoute); } // Check targetRoute exists
+          speechBubbleTimeoutRef.current = setTimeout(() => { 
+            setSpeechBubbleText(null); 
+            speechBubbleTimeoutRef.current = null; 
+          }, 5000);
+          
+          const targetRoute = cubeRoutes[landedCubeId]; 
+          if (targetRoute && location.pathname !== targetRoute) { 
+            console.log(`Navigating to: ${targetRoute} from cube ${landedCubeId}`);
+            navigate(targetRoute); 
+          } else if (targetRoute) {
+            console.log(`Already on route: ${targetRoute}`);
+          } else {
+            console.log(`No navigation - cube ${landedCubeId} is a placeholder`);
+          }
+          
           qbert.jumpProgress = 0;
           return;
       }
@@ -193,56 +212,161 @@ const SimplifiedQBertNav = () => {
 
   // --- Main useEffect (Click handler uses scaled coords from previous fix) ---
   useEffect(() => {
-    const canvas = canvasRef.current; if (!canvas) return;
+    console.log("Main useEffect running, location:", location.pathname);
+    const canvas = canvasRef.current; 
+    if (!canvas) {
+      console.error("Canvas ref is null!");
+      return;
+    }
+    
     const ctx = canvas.getContext('2d');
     let frameId;
 
-    // Initialization Logic
-    if (!isInitialized.current) {
-      console.log("Initializing QBertNav...");
-      const resizeCanvas = () => { /* ... same resize using fixed height 400 ... */
-          if (!canvas.parentElement) return; const parentRect = canvas.parentElement.getBoundingClientRect();
-          const newWidth = parentRect.width - 32; // Assume 1rem padding
-          const newHeight = 400; // Fixed height
-          if (canvas.width !== newWidth || canvas.height !== newHeight) {
-              canvas.width = newWidth; canvas.height = newHeight;
-              console.log(`Canvas internal size set to: ${canvas.width}x${canvas.height}`);
-              if (qbertRef.current) { gridRef.current = createGrid(canvas.width, canvas.height); if (!qbertRef.current.moving) { updateQbertPosition(); } }
-          }
-      };
-      resizeCanvas(); window.addEventListener('resize', resizeCanvas);
+    // Always update the grid when location changes, not just on init
+    const resizeCanvas = () => {
+      if (!canvas.parentElement) return; 
+      const parentRect = canvas.parentElement.getBoundingClientRect();
+      console.log("Parent element dimensions:", parentRect.width, parentRect.height);
+      const newWidth = parentRect.width - 32; // Assume 1rem padding
+      const newHeight = 400; // Fixed height
+      if (canvas.width !== newWidth || canvas.height !== newHeight) {
+        canvas.width = newWidth; 
+        canvas.height = newHeight;
+        console.log(`Canvas internal size set to: ${canvas.width}x${canvas.height}`);
+      }
+    };
+    
+    resizeCanvas(); 
+    window.addEventListener('resize', resizeCanvas);
 
-      gridRef.current = createGrid(canvas.width, canvas.height);
-      qbertRef.current = { /* ... qbert init ... */ currentCube: routeMap[location.pathname] || 1, targetCube: routeMap[location.pathname] || 1, x: 0, y: 0, moving: false, jumpProgress: 0, startX: 0, startY: 0, targetX: 0, targetY: 0, spriteWidth: 48, spriteHeight: 48, spriteImage: new Image(), spriteLoaded: false };
-      qbertRef.current.spriteImage.onload = () => { if(qbertRef.current) qbertRef.current.spriteLoaded = true; }; qbertRef.current.spriteImage.onerror = () => { console.error("Failed Q*bert sprite load."); if(qbertRef.current) qbertRef.current.spriteLoaded = false; }; qbertRef.current.spriteImage.src = '/qbert-sprite.png';
-      updateQbertPosition();
+    // Initialize or reinitialize the grid and Q*bert
+    gridRef.current = createGrid(canvas.width, canvas.height);
+    
+    qbertRef.current = { 
+      currentCube: routeMap[location.pathname] || 1, 
+      targetCube: routeMap[location.pathname] || 1, 
+      x: 0, y: 0, 
+      moving: false, 
+      jumpProgress: 0, 
+      startX: 0, 
+      startY: 0, 
+      targetX: 0, 
+      targetY: 0, 
+      spriteWidth: 48, 
+      spriteHeight: 48, 
+      spriteImage: new Image(), 
+      spriteLoaded: false 
+    };
+    
+    qbertRef.current.spriteImage.onload = () => {
+      qbertRef.current.spriteLoaded = true;
+    }; 
+    
+    qbertRef.current.spriteImage.onerror = (e) => {
+      console.error("Failed to load Q*bert sprite:", e);
+    }; 
+    
+    qbertRef.current.spriteImage.src = '/qbert-sprite.png';
+    updateQbertPosition();
 
-      const handleClick = (e) => { /* ... same scaled click handler ... */
-          if (!qbertRef.current || qbertRef.current.moving || !gridRef.current || !canvasRef.current) return; const canvas = canvasRef.current; const rect = canvas.getBoundingClientRect();
-          const scaleX = canvas.width / rect.width; const scaleY = canvas.height / rect.height;
-          const canvasX = (e.clientX - rect.left) * scaleX; const canvasY = (e.clientY - rect.top) * scaleY;
-          let clickedCube = null; let minDistance = Infinity; const clickRadius = 40;
-          for (const cube of gridRef.current.cubes) { const dx = cube.x - canvasX; const dy = (cube.y - gridRef.current.cubeHeight / 2) - canvasY; const distance = Math.sqrt(dx * dx + dy * dy); if (distance < clickRadius && distance < minDistance) { clickedCube = cube; minDistance = distance; } }
-          if (clickedCube) { console.log(`Canvas Clicked (Scaled): Cube ${clickedCube.id} at [${canvasX.toFixed(1)}, ${canvasY.toFixed(1)}]`); jumpToNewCube(clickedCube.id); }
-      };
-      canvas.addEventListener('click', handleClick);
-      isInitialized.current = true;
-      canvas.cleanupListeners = () => { console.log("Cleaning up QBertNav init listeners..."); window.removeEventListener('resize', resizeCanvas); canvas.removeEventListener('click', handleClick); };
-    } // End Initialization
+    // Define the handleClick function
+    const handleClick = (e) => {
+      if (!qbertRef.current || !gridRef.current || !canvasRef.current) return;
+      
+      const canvas = canvasRef.current;
+      const rect = canvas.getBoundingClientRect();
+      
+      const scaleX = canvas.width / rect.width;
+      const scaleY = canvas.height / rect.height;
+      
+      const canvasX = (e.clientX - rect.left) * scaleX;
+      const canvasY = (e.clientY - rect.top) * scaleY;
+      
+      // Debug click position
+      console.log(`Click at canvas coords: [${canvasX.toFixed(1)}, ${canvasY.toFixed(1)}]`);
+      
+      let clickedCube = null;
+      let minDistance = Infinity;
+      const clickRadius = 60; // Increased for easier clicking
+      
+      for (const cube of gridRef.current.cubes) {
+        const dx = cube.x - canvasX;
+        // Aim for the top of the cube for better click detection
+        const dy = (cube.y - gridRef.current.cubeHeight/2) - canvasY;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if (distance < clickRadius && distance < minDistance) {
+          clickedCube = cube;
+          minDistance = distance;
+        }
+      }
+      
+      if (clickedCube) {
+        console.log(`Clicked cube ${clickedCube.id} (route: ${cubeRoutes[clickedCube.id] || 'placeholder'})`);
+        jumpToNewCube(clickedCube.id);
+      } else {
+        console.log('No cube clicked');
+      }
+    };
 
-    // Check for Path Changes (Unchanged)
-    const qbert = qbertRef.current; if (qbert && isInitialized.current) { const targetCubeIdFromPath = routeMap[location.pathname] || 1; if (targetCubeIdFromPath !== qbert.currentCube && !qbert.moving) { console.log(`Path changed to ${location.pathname}. Triggering jump from ${qbert.currentCube} to ${targetCubeIdFromPath}`); jumpToNewCube(targetCubeIdFromPath); } else if (targetCubeIdFromPath === qbert.currentCube && !qbert.moving) { updateQbertPosition(); } }
+    // Actually attach the click handler to the canvas
+    canvas.addEventListener('click', handleClick);
+    
+    // Set up animation loop
+    const animate = () => {
+      try {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        drawGrid(ctx);
+        updateQbertJump(); // Update Q*bert position if moving
+        drawQbert(ctx);
+        frameId = requestAnimationFrame(animate);
+      } catch (error) {
+        console.error("Error in animation loop:", error);
+        cancelAnimationFrame(frameId);
+      }
+    };
+    
+    // Start animation
+    animate();
+    isInitialized.current = true;
+    
+    // Clean up on unmount or when dependencies change
+    return () => {
+      console.log("Cleaning up Q*bert effect");
+      if (frameId) {
+        cancelAnimationFrame(frameId);
+      }
+      canvas.removeEventListener('click', handleClick);
+      window.removeEventListener('resize', resizeCanvas);
+    };
+  }, [location.pathname, navigate]); // Include navigate in dependencies
 
-    // Animation Loop (Unchanged)
-    const animate = () => { if (!canvasRef.current || !qbertRef.current || !gridRef.current) return; const currentCtx = canvasRef.current.getContext('2d'); if (!currentCtx) return; currentCtx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height); if (qbertRef.current.moving) { updateQbertJump(); } drawGrid(currentCtx); drawQbert(currentCtx); frameId = requestAnimationFrame(animate); }; animate();
-
-    // Cleanup (Unchanged)
-    return () => { console.log("Running QBertNav cleanup..."); cancelAnimationFrame(frameId); if (speechBubbleTimeoutRef.current) { clearTimeout(speechBubbleTimeoutRef.current); speechBubbleTimeoutRef.current = null; } if (canvas && canvas.cleanupListeners) { canvas.cleanupListeners(); delete canvas.cleanupListeners; } };
-
-  }, [location.pathname]); // Dependency
-
-
-  return <canvas ref={canvasRef} className="qbert-canvas" />;
+  useEffect(() => {
+    console.log("SimplifiedQBertNav mounted");
+    return () => {
+      console.log("SimplifiedQBertNav unmounted");
+      // Reset initialization on unmount
+      isInitialized.current = false;
+    };
+  }, []);
+  
+  // Make sure to return the canvas element
+  return (
+    <div className="qbert-nav-container" style={{ width: '100%', height: '400px' }}>
+      <canvas 
+        ref={canvasRef}
+        className="qbert-canvas"
+        style={{
+          cursor: 'pointer', 
+          borderRadius: '8px',
+          border: '1px solid #444',
+          width: '100%',
+          height: '100%',
+          display: 'block' // Ensure it's displayed as a block element
+        }}
+      />
+    </div>
+  );
 };
 
 export default SimplifiedQBertNav;
