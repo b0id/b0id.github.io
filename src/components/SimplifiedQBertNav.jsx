@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './QBertNavigation.css';
 
-const SimplifiedQBertNav = () => {
+const SimplifiedQBertNav = ({ isMobile = false }) => {
   console.log("QBertNav rendering...");
   const canvasRef = useRef(null);
   const qbertRef = useRef(null);
@@ -179,36 +179,44 @@ const SimplifiedQBertNav = () => {
   // --- End drawQbert ---
   // --- End Drawing Functions ---
 
-  // --- Grid Creation - Modified for 4 Rows ---
+  // --- Grid Creation - Modified for Responsive Size ---
   const createGrid = (width, height) => {
+    // Scale more appropriately for mobile
+    const scale = isMobile ? 0.3 : 1; // Smaller scale for mobile
+    
     const centerX = width / 2;
-    // Move grid slightly higher to accommodate 4th row
-    const topY = height * 0.2;
-    const cubeSize = Math.max(40, Math.min(width / 6, 65)); // Slightly smaller max size maybe needed
+    // Move grid slightly higher to accommodate view
+    const topY = height * (isMobile ? 0.25 : 0.2); // Adjusted for mobile
+    
+    // Adjust cube size for mobile
+    const cubeSize = Math.max(25 * scale, Math.min(width / 7, 60 * scale)); 
     const cubeHeight = cubeSize * 0.5;
-    const isoAngle = Math.PI / 6; const cosAngle = Math.cos(isoAngle); const sinAngle = Math.sin(isoAngle);
-    const cubes = []; let cubeId = 1;
-    const rows = 4; // INCREASED to 4 rows
+    const isoAngle = Math.PI / 6; 
+    const cosAngle = Math.cos(isoAngle); 
+    const sinAngle = Math.sin(isoAngle);
+    const cubes = []; 
+    let cubeId = 1;
+    // Reduce rows for mobile
+    const rows = isMobile ? 3 : 4;
 
     for (let row = 0; row < rows; row++) {
       for (let col = 0; col <= row; col++) {
         // Stop creating cubes if we exceed the number defined in cubeRoutes
         if (cubeId > Object.keys(cubeRoutes).length) break;
 
-        // Adjust vertical spacing slightly to fit 4 rows
+        // Adjust vertical spacing slightly to fit rows
         const x = centerX + (col - row / 2) * cubeSize * cosAngle * 1.8;
-        const y = topY + row * (cubeSize * sinAngle + cubeHeight * 0.55); // Reduced multiplier
+        const y = topY + row * (cubeSize * sinAngle + cubeHeight * 0.55);
 
         cubes.push({
             id: cubeId,
-            // route: cubeRoutes[cubeId], // Store route directly? Optional.
             x, y, row, col, visited: false
         });
-        cubeId++; // Increment ID for next cube
+        cubeId++;
       }
-       if (cubeId > Object.keys(cubeRoutes).length) break; // Break outer loop too
+      if (cubeId > Object.keys(cubeRoutes).length) break;
     }
-    console.log(`Grid created with ${rows} rows. Total cubes: ${cubes.length}`);
+    
     return { cubes, cubeSize, cubeHeight, cosAngle, sinAngle };
   };
    // --- End Grid Creation ---
@@ -229,12 +237,19 @@ const SimplifiedQBertNav = () => {
       if (!canvas.parentElement) return; 
       const parentRect = canvas.parentElement.getBoundingClientRect();
       console.log("Parent element dimensions:", parentRect.width, parentRect.height);
-      const newWidth = parentRect.width - 32; // Assume 1rem padding
-      const newHeight = 400; // Fixed height
+      
+      // Set size based on isMobile prop
+      const newWidth = isMobile ? 100 : (parentRect.width - 32);
+      const newHeight = isMobile ? 100 : 400;
+      
       if (canvas.width !== newWidth || canvas.height !== newHeight) {
         canvas.width = newWidth; 
         canvas.height = newHeight;
         console.log(`Canvas internal size set to: ${canvas.width}x${canvas.height}`);
+        
+        // Re-initialize grid when size changes
+        gridRef.current = createGrid(canvas.width, canvas.height);
+        updateQbertPosition();
       }
     };
     
@@ -359,7 +374,7 @@ const SimplifiedQBertNav = () => {
       canvas.removeEventListener('click', handleClick);
       window.removeEventListener('resize', resizeCanvas);
     };
-  }, [location.pathname, navigate]); // Include navigate in dependencies
+  }, [location.pathname, navigate, isMobile]); // Add isMobile to dependencies
 
   // Add a useEffect to detect route changes from navbar
   useEffect(() => {
@@ -398,17 +413,22 @@ const SimplifiedQBertNav = () => {
   
   // Make sure to return the canvas element
   return (
-    <div className="qbert-nav-container" style={{ width: '100%', height: '400px' }}>
+    <div className="qbert-nav-container" style={{ 
+      width: '100%',
+      height: '100%',
+      padding: 0,
+      margin: 0
+    }}>
       <canvas 
         ref={canvasRef}
         className="qbert-canvas"
         style={{
           cursor: 'pointer', 
-          borderRadius: '8px',
-          border: '1px solid #444',
+          borderRadius: '4px',
+          border: 'none',
           width: '100%',
           height: '100%',
-          display: 'block' // Ensure it's displayed as a block element
+          display: 'block'
         }}
       />
     </div>

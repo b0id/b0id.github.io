@@ -1,275 +1,505 @@
-/* SimplifiedLayout.css */
+/* SimplifiedLayout.css - Clean version */
 
-/* Import fonts (can be removed if only defined in index.css) */
-/* @import url('...'); */
-
-/* Base styles and NEW theme variables */
+/* Base variables */
 :root {
-  /* Muted Modern Retro Theme Colors */
-  --default-color: #8a8aff; /* Muted Purple */
-  --default-light: #aaaaff;
-  --default-dark: #6a6acc;
+  /* Theme colors */
+  --default-color: #8a8aff;
+  --nursing-color: #ff8a8a;
+  --electronics-color: #8aff8a;
+  --engineering-color: #8ae8ff;
+  --life-color: #ffd08a;
+  --about-color: #c08aff;
 
-  --nursing-color: #ff8a8a; /* Muted Red */
-  --nursing-light: #ffaaaa;
-  --nursing-dark: #cc6a6a;
-
-  --electronics-color: #8aff8a; /* Muted Green */
-  --electronics-light: #aaffaa;
-  --electronics-dark: #6acc6a;
-
-  --engineering-color: #8ae8ff; /* Muted Blue */
-  --engineering-light: #aaf0ff;
-  --engineering-dark: #6accdc;
-
-  --life-color: #ffd08a; /* Muted Orange */
-  --life-light: #ffe0aa;
-  --life-dark: #ccaa6a;
-
-  --about-color: #c08aff; /* Muted Lavender */
-  --about-light: #d0aaff;
-  --about-dark: #a06acc;
-
-  /* Core UI colors */
+  /* Core UI */
   --bg-color: #1a1a1d;
-  --panel-bg: #242428; /* Slightly lighter panel background */
+  --panel-bg: #242428;
   --panel-bg-hover: #2d2d32;
-  --border-color: rgba(255, 255, 255, 0.1); /* Subtle border color */
+  --border-color: rgba(255, 255, 255, 0.1);
   --text-color: #e1e1e1;
-  --text-secondary: #a0a0a0; /* Muted secondary text */
-
+  --text-secondary: #a0a0a0;
+  --accent-color: #3d3;
+  
   /* Spacing */
   --space-xs: 0.5rem;
-  --space-sm: 0.75rem; /* Slightly reduced spacing */
+  --space-sm: 0.75rem;
   --space-md: 1rem;
   --space-lg: 1.5rem;
-
-  /* Borders */
-  --border-radius: 6px; /* Soften corners */
+  
+  /* Border */
+  --border-radius: 6px;
 }
 
-/* Layout base - Constrain to viewport height */
-.layout {
-  display: flex;
-  flex-direction: column;
-  height: 100vh; /* Fill viewport height */
-  max-height: 100vh;
+/* Global reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  width: 100%;
+}
+
+body {
   background-color: var(--bg-color);
   color: var(--text-color);
-  font-family: 'Inter', sans-serif; /* Ensure consistent font */
-  overflow: hidden; /* ADDED/VERIFIED */
+  font-family: 'JetBrains Mono', monospace, -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-/* Theme colors application */
-.layout.default { --theme-color: var(--default-color); --theme-light: var(--default-light); --theme-dark: var(--default-dark); }
-.layout.nursing { --theme-color: var(--nursing-color); --theme-light: var(--nursing-light); --theme-dark: var(--nursing-dark); }
-.layout.electronics { --theme-color: var(--electronics-color); --theme-light: var(--electronics-light); --theme-dark: var(--electronics-dark); }
-.layout.engineering { --theme-color: var(--engineering-color); --theme-light: var(--engineering-light); --theme-dark: var(--engineering-dark); }
-.layout.life { --theme-color: var(--life-color); --theme-light: var(--life-light); --theme-dark: var(--life-dark); }
-.layout.about { --theme-color: var(--about-color); --theme-light: var(--about-light); --theme-dark: var(--about-dark); }
+/* Site structure */
+.site-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  overscroll-behavior-y: none; /* Prevent bounce effects that can interfere with scrolling */
+}
 
-/* Header styles */
+/* Site header - TALLER as requested */
 .site-header {
-  padding: var(--space-sm) var(--space-md);
-  text-align: center;
   background-color: var(--panel-bg);
-  border-bottom: 1px solid var(--border-color); /* Subtle border */
-  flex-shrink: 0; /* Prevent header from shrinking */
+  border-bottom: 1px solid var(--border-color);
+  height: 100px; /* Taller header */
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.5rem;
+  height: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.logo-container {
+  text-align: center;
+  flex-grow: 1;
 }
 
 .site-name {
-  font-family: 'Press Start 2P', cursive; /* Pixelated font */
-  font-size: 1.8rem; /* Approx 20% larger than 1.5rem */
-  color: var(--theme-color);
-  margin-bottom: 0;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.8rem;
+  color: var(--accent-color);
+  margin: 0;
 }
 
 .site-subtitle {
   font-size: 0.9rem;
   color: var(--text-secondary);
-  margin-top: var(--space-xs);
+  margin-top: 0.2rem;
 }
 
-/* Page layout - Occupy remaining height */
+/* Q*bert container - shared styles */
+.qbert-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.qbert-container.desktop {
+  width: 25rem; /* ~400px using rem */
+  height: 25rem;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.qbert-container.mobile {
+  margin-top: 0; /* Adjust for mobile */
+  width: 3.75rem; /* 60px */
+  height: 3.75rem; /* 60px */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.qbert-placeholder {
+  width: 30px;
+}
+
+/* Remove any extra mobile-qbert-wrapper styles */
+.mobile-qbert-wrapper {
+  display: none; /* No longer needed */
+}
+
+/* Mobile navigation */
+.hamburger-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 25px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 10;
+}
+
+.hamburger-menu span {
+  width: 30px;
+  height: 3px;
+  background: var(--accent-color);
+  border-radius: 10px;
+  transition: all 0.3s linear;
+  transform-origin: 1px;
+}
+
+.hamburger-menu.open span:nth-child(1) {
+  transform: rotate(45deg);
+}
+
+.hamburger-menu.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-menu.open span:nth-child(3) {
+  transform: rotate(-45deg);
+}
+
+.mobile-nav {
+  display: block; /* Always create the space */
+  background-color: var(--panel-bg);
+  border-bottom: 1px solid var(--border-color);
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  width: 100%;
+}
+
+.mobile-nav.open {
+  max-height: 300px;
+  opacity: 1;
+}
+
+/* HORIZONTAL mobile navigation */
+.mobile-nav-items {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+}
+
+.mobile-nav .nav-item {
+  padding: 0.75rem 1rem;
+  text-align: center;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--text-color);
+  text-decoration: none;
+  flex: 0 1 auto;
+  margin: 0.25rem;
+  border-bottom: 3px solid transparent;
+}
+
+.mobile-nav .nav-item.active {
+  border-bottom-color: var(--accent-color);
+}
+
+/* Content layout */
 .page-layout {
   display: flex;
-  flex-grow: 1; /* Take remaining vertical space */
-  padding: var(--space-md);
-  gap: var(--space-md);
-  overflow: hidden; /* Prevent page-layout itself from scrolling */
-  min-height: 0; /* Crucial for flex children height calculation */
+  flex: 1;
+  position: relative;
 }
 
-/* Sidebar styles */
+/* Sidebar */
 .sidebar {
-  width: 240px; /* Slightly narrower */
-  flex-shrink: 0;
+  width: 12.5rem; /* 200px */
   background-color: var(--panel-bg);
-  border-radius: var(--border-radius);
-  padding: var(--space-sm);
-  border: 1px solid var(--border-color);
-  overflow-y: auto; /* Allow sidebar scrolling if needed */
-  min-height: 0; /* VERIFIED */
+  border-right: 1px solid var(--border-color);
+  position: sticky;
+  top: 100px; /* Match header height */
+  height: calc(100vh - 100px); /* Full height minus header */
+  overflow-y: auto;
+  flex-shrink: 0; /* Don't allow sidebar to shrink */
 }
 
-.navigation-menu {
+/* Main layout container - 3 column structure */
+.main-layout {
+  display: flex;
+  flex: 1;
+  height: calc(100vh - 100px); /* Full height minus header */
+}
+
+.sidebar nav {
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
+  padding: 1rem 0;
 }
 
-.nav-item {
-  padding: 0.6rem var(--space-sm); 
-  background-color: transparent; /* Use sidebar background */
-  border-radius: calc(var(--border-radius) - 2px);
-  text-decoration: none;
+.sidebar .nav-item {
+  padding: 0.8rem 1.2rem;
   color: var(--text-color);
-  border-left: 3px solid transparent; /* Subtle indicator */
-  transition: background-color 0.2s ease, border-left-color 0.2s ease;
+  text-decoration: none;
+  border-left: 4px solid transparent;
+  transition: background-color 0.2s ease;
 }
 
-.nav-item:hover {
-  background-color: var(--panel-bg-hover);
-  border-left-color: var(--text-secondary); /* Indicate hover */
-  transform: none; /* Remove previous transform */
+.sidebar .nav-item:hover {
+  background-color: rgba(255, 255, 255, 0.05);
 }
 
-.nav-item.active {
-  background-color: rgba(0, 0, 0, 0.2); /* Subtle active background */
-  border-left-color: var(--theme-color); /* Use theme color for active */
+.sidebar .nav-item.active {
+  border-left-color: var(--accent-color);
+  background-color: rgba(255, 255, 255, 0.03);
 }
 
-/* No separate theme colors needed if using .active with --theme-color */
-
-.nav-name {
-  font-weight: 600; /* Slightly less bold */
-  margin-bottom: var(--space-xs);
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.85rem;
-  color: var(--theme-color);
+/* Content area - enable scrolling */
+.content-area {
+  flex: 1;
+  padding: 1.5rem;
+  overflow-y: auto; /* Enable scrolling */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
+  height: calc(100vh - 100px); /* Full height minus header */
+  border-left: 1px solid var(--border-color);
 }
 
-.nav-desc {
-  font-size: 0.8rem;
-  color: var(--text-secondary);
-  line-height: 1.4; /* Improve readability */
+.content-area.desktop {
+  flex: 1; /* Take remaining space */
+  height: 100%;
+  padding: 1.5rem;
+  overflow-y: auto; /* MAKE CONTENT SCROLLABLE */
+  border-left: 1px solid var(--border-color); /* Visual separator */
 }
 
-/* Main content area */
-.main-content {
-  flex-grow: 1; /* Take remaining horizontal space */
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  overflow: hidden; /* Prevent this from scrolling */
-  min-height: 0; /* ADDED/VERIFIED */
+.content-area.mobile {
+  width: 100%;
+  height: calc(100vh - 180px); /* Adjust for mobile header + nav */
+  padding: 1rem;
+  overflow-y: auto;
 }
 
-/* Page header within main content */
-.page-header {
-  text-align: left; /* Align left for dashboard feel */
-  margin-bottom: var(--space-md);
-  padding: 0 var(--space-sm); /* Add some padding */
-  flex-shrink: 0; /* Prevent shrinking */
-}
-
-.page-title {
-  font-size: 1.3rem;
-  margin-bottom: var(--space-xs);
-}
-
-.page-subtitle {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-}
-
-/* Wrapper for Q*bert and Content */
-.center-right-wrapper {
-  display: flex;
-  flex-grow: 1; /* Takes remaining vertical space in main-content */
-  gap: var(--space-md);
-  overflow: hidden; /* Important */
-  min-height: 0; /* Crucial for flex children height calculation */
-}
-
-/* Q*bert navigation container */
-.qbert-navigation {
-  flex-basis: 400px; /* Adjust width */
-  flex-shrink: 0;
-  margin-bottom: 0;
-  background-color: var(--panel-bg);
-  border-radius: var(--border-radius);
-  padding: var(--space-sm); /* e.g. 1rem = 16px */
-  border: 1px solid var(--border-color);
-  display: flex; /* Center canvas if needed */
-  align-items: center;
-  justify-content: center;
-  overflow: hidden; /* Hide canvas overflow */
-  min-height: 0; /* ADDED/VERIFIED */
-}
-
-/* Content container - Scrollable */
-.content-container {
-  flex-grow: 1;
-  background-color: var(--panel-bg);
-  border-radius: var(--border-radius);
-  padding: var(--space-md);
-  border: 1px solid var(--border-color);
-  min-width: 0;
-  overflow-y: auto; /* ENABLE SCROLLING HERE */
-  min-height: 0; /* VERIFIED */
-}
-
-/* Footer */
-.site-footer {
-  padding: var(--space-sm);
-  text-align: center;
-  background-color: var(--panel-bg);
-  border-top: 1px solid var(--border-color);
-  font-size: 0.8rem;
-  color: var(--text-secondary);
-  flex-shrink: 0; /* Prevent footer from shrinking */
-}
-
-.social-links {
-  display: flex;
-  justify-content: center;
-  gap: var(--space-md);
-  margin-top: var(--space-xs);
-}
-
-.social-links a {
-  color: var(--text-secondary); /* Muted social links */
-  font-size: 0.8rem;
-}
-
-.social-links a:hover {
-  color: var(--theme-light);
-  text-decoration: none; /* Remove underline on hover */
-}
-
-/* Responsive adjustments */
-@media (max-width: 1024px) {
-  .sidebar { width: 200px; }
-  .qbert-navigation { flex-basis: 350px; }
-  .nav-name { font-size: 0.8rem; }
-  .nav-desc { display: none; }
-}
-
+/* Responsive layout */
 @media (max-width: 768px) {
-  .page-layout { flex-direction: column; padding: var(--space-sm); gap: var(--space-sm); }
-  .sidebar { width: 100%; order: 1; max-height: 150px; overflow-y: auto; }
-  .navigation-menu { flex-direction: row; overflow-x: auto; padding-bottom: var(--space-sm); }
-  .nav-item { flex: 0 0 auto; width: 120px; border-left-width: 0; border-bottom: 3px solid transparent; }
-  .nav-item:hover { border-bottom-color: var(--text-secondary); }
-  .nav-item.active { border-bottom-color: var(--theme-color); }
-  .nav-name { text-align: center; margin-bottom: 0; }
-  .nav-desc { display: none; }
-  .main-content { order: 0; }
-  .center-right-wrapper { flex-direction: column; gap: var(--space-sm); }
-  .qbert-navigation { flex-basis: auto; width: 100%; height: 300px; margin-bottom: 0; }
-  .content-container { flex-grow: 1; }
-  .site-header, .site-footer { padding: var(--space-sm); }
-  .site-name { font-size: 1.2rem; }
-  .page-title { font-size: 1.1rem; }
+  .page-layout {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    display: none;
+  }
+  
+  .content-area {
+    height: auto;
+    min-height: calc(100vh - 350px); /* Adjust for header + nav + Q*bert */
+    max-height: none; /* Remove any max-height limitations */
+    overflow-y: auto; /* Ensure scrolling works */
+    padding: 1rem;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Force page to be scrollable on mobile */
+  html, body {
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .site-wrapper {
+    overflow-y: visible;
+  }
+  
+  .site-subtitle {
+    font-size: 0.8rem;
+  }
+  
+  /* Adjust Q*bert size for mobile */
+  .qbert-container {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .qbert-container.mobile {
+    margin-right: -10px; /* Pull slightly right to align properly */
+  }
+}
+
+/* Update Q*bert container styles */
+
+/* Header spacer for desktop layout consistency */
+.header-spacer {
+  width: 30px;
+}
+
+/* Mobile Q*bert in header */
+.qbert-container.mobile {
+  width: 60px;
+  height: 60px;
+  margin-top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Desktop Q*bert in content section */
+.qbert-section {
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+/* Adjust the layout for desktop content */
+@media (min-width: 769px) {
+  /* Ensure the content area properly displays the Q*bert section */
+  .content-area {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Ensure proper sizing of Q*bert container */
+  .qbert-container.desktop canvas {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+/* Add/update these specific styles */
+
+/* Main layout container */
+.main-layout {
+  display: flex;
+  flex: 1;
+  position: relative;
+  min-height: calc(100vh - 100px); /* Full height minus header */
+  overflow: visible; /* Allow content to display */
+}
+
+/* Split content area styles */
+.split-content {
+  display: flex;
+  flex: 1;
+  position: relative;
+  overflow: hidden; /* Hide overflowing content */
+}
+
+/* Q*bert panel on left */
+.qbert-panel {
+  width: 25rem; /* ~400px using rem */
+  height: 100%;
+  padding: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-shrink: 0; /* Don't allow Q*bert panel to shrink */
+  background-color: var(--bg-color); /* Match background */
+}
+
+/* Q*bert container positioning */
+.qbert-container.desktop {
+  width: 25rem; /* ~400px using rem */
+  height: 25rem;
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.qbert-container.mobile {
+  width: 60px;
+  height: 60px;
+}
+
+/* Content area with independent scrolling */
+.content-area {
+  position: relative;
+  overflow-y: auto; /* Enable scrolling */
+  -webkit-overflow-scrolling: touch;
+}
+
+.content-area.desktop {
+  flex: 1;
+  padding: 1.5rem;
+  min-height: 100%;
+  overflow-y: auto; /* Enable scrolling */
+  border-left: 1px solid var(--border-color); /* Visual separator */
+  display: block; /* Ensure content is visible */
+}
+
+.content-area.mobile {
+  width: 100%;
+  padding: 15px;
+  min-height: calc(100vh - 180px); /* Adjust for mobile header + nav */
+}
+
+/* Mobile navigation */
+.mobile-nav {
+  display: none;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.mobile-nav.open {
+  display: block;
+  max-height: 300px;
+}
+
+.mobile-nav-items {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+  background-color: var(--panel-bg);
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* Make sure header and sidebar work with new layout */
+.site-header {
+  background-color: var(--panel-bg);
+  border-bottom: 1px solid var(--border-color);
+  height: 100px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.sidebar {
+  width: 200px;
+  background-color: var(--panel-bg);
+  border-right: 1px solid var(--border-color);
+  height: 100%;
+  overflow-y: auto;
+}
+
+/* Placeholder spacer for header layout */
+.header-spacer {
+  width: 60px;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .main-layout {
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
+  /* Override global overflow settings for mobile */
+  html, body {
+    overflow-y: auto !important;
+  }
+  
+  /* Make content fill available space */
+  .content-area.mobile {
+    flex: 1;
+    min-height: calc(100vh - 180px);
+  }
+}
+
+/* Fix any interference with content scrolling */
+.site-wrapper, html, body, #root {
+  overscroll-behavior-y: none; /* Prevent bounce effects that can interfere with scrolling */
 }
