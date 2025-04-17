@@ -1,0 +1,62 @@
+.site-footer {
+  background-color: var(--panel-bg);
+  border-top: 1px solid var(--border-color);
+  padding: 1.5rem 0;
+  margin-top: auto;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.social-links {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.social-links a {
+  color: var(--text-secondary);
+  font-size: 1.5rem;
+  transition: color 0.2s ease;
+}
+
+.social-links a:hover {
+  color: var(--theme-color);
+}
+
+.copyright {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+}
+
+/* Theme-based footer colors */
+.theme-home .site-footer {
+  --theme-color: var(--default-color);
+}
+
+.theme-nursing .site-footer {
+  --theme-color: var(--nursing-color);
+}
+
+.theme-electronics .site-footer {
+  --theme-color: var(--electronics-color);
+}
+
+.theme-engineering .site-footer {
+  --theme-color: var(--engineering-color);
+}
+
+.theme-life .site-footer {
+  --theme-color: var(--life-color);
+}
+
+.theme-about .site-footer {
+  --theme-color: var(--about-color);
+}

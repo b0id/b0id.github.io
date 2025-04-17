@@ -231,7 +231,8 @@ body {
 .main-layout {
   display: flex;
   flex: 1;
-  height: calc(100vh - 100px); /* Full height minus header */
+  min-height: 0; /* Critical for nested flex scrolling to work */
+  height: calc(100vh - 160px); /* Adjust for header and footer */
 }
 
 .sidebar nav {
@@ -253,7 +254,7 @@ body {
 }
 
 .sidebar .nav-item.active {
-  border-left-color: var(--accent-color);
+  border-left-color: var(--theme-color);
   background-color: rgba(255, 255, 255, 0.03);
 }
 
@@ -269,10 +270,9 @@ body {
 
 .content-area.desktop {
   flex: 1; /* Take remaining space */
-  height: 100%;
-  padding: 1.5rem;
-  overflow-y: auto; /* MAKE CONTENT SCROLLABLE */
-  border-left: 1px solid var(--border-color); /* Visual separator */
+  overflow-y: auto !important; /* FORCE SCROLLING */
+  padding: 0; /* Remove padding, will be in page-container */
+  border-left: 1px solid var(--theme-color); /* Theme-colored separator */
 }
 
 .content-area.mobile {
@@ -407,6 +407,7 @@ body {
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  border: 2px solid var(--theme-color); /* Theme-colored border */
 }
 
 .qbert-container.mobile {
@@ -502,4 +503,151 @@ body {
 /* Fix any interference with content scrolling */
 .site-wrapper, html, body, #root {
   overscroll-behavior-y: none; /* Prevent bounce effects that can interfere with scrolling */
+}
+
+/* REDUCE AND REORGANIZE CSS - FIX SCROLLING ISSUES */
+
+/* Theme color variables based on current section */
+.theme-home {
+  --theme-color: var(--default-color);
+}
+
+.theme-nursing {
+  --theme-color: var(--nursing-color);
+}
+
+.theme-electronics {
+  --theme-color: var(--electronics-color);
+}
+
+.theme-engineering {
+  --theme-color: var(--engineering-color);
+}
+
+.theme-life {
+  --theme-color: var(--life-color);
+}
+
+.theme-about {
+  --theme-color: var(--about-color);
+}
+
+/* Consistent page containers */
+.page-container {
+  padding: 1.5rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Make sure content headings use theme colors */
+.page-container h1, 
+.page-container h2, 
+.page-container h3 {
+  color: var(--theme-color);
+}
+
+/* Fix nav items on sidebar to use theme colors */
+.sidebar .nav-item.active {
+  border-left-color: var(--theme-color);
+}
+
+/* Fix mobile nav items to use theme colors */
+.mobile-nav .nav-item.active {
+  border-bottom-color: var(--theme-color);
+}
+
+/* Add/update these mobile-specific styles at the bottom of your file */
+
+/* Mobile content scrolling fixes - don't touch desktop styles */
+@media (max-width: 768px) {
+  /* Ensure body and html are scrollable */
+  html, body {
+    height: 100%;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+    position: relative;
+  }
+  
+  /* Fix main layout for mobile */
+  .main-layout {
+    height: auto !important;
+    min-height: calc(100vh - 180px);
+    overflow: visible !important;
+  }
+  
+  /* Make mobile content area scrollable */
+  .content-area.mobile {
+    height: auto !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 30px; /* Add space at bottom */
+  }
+  
+  /* Ensure site wrapper allows scrolling */
+  .site-wrapper {
+    min-height: 100vh;
+    overflow-y: auto !important;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Fix for iOS Safari scrolling */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* ADD THESE AT THE END OF YOUR FILE - Mobile specific fixes */
+
+/* Mobile scrolling fixes - ONLY affects mobile */
+@media (max-width: 768px) {
+  /* Force scrolling on all necessary containers */
+  body, html, #root {
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+    position: static;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Fix site wrapper for mobile */
+  .site-wrapper {
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: 100%;
+    overflow-y: visible !important;
+  }
+  
+  /* Allow main layout to scroll */
+  .main-layout {
+    position: static;
+    height: auto !important;
+    min-height: 50vh;
+    overflow-y: visible !important;
+  }
+  
+  /* Force mobile content area to be scrollable */
+  .content-area.mobile {
+    position: relative; 
+    height: auto !important;
+    min-height: 50vh;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 2rem;
+    touch-action: auto !important;
+  }
+  
+  /* Make sure page container is tappable */
+  .page-container {
+    position: relative;
+    z-index: 10;
+    touch-action: auto !important;
+  }
+  
+  /* Adjust footer on mobile */
+  .site-footer {
+    position: relative;
+    margin-top: 2rem;
+  }
 }

@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
 import SimplifiedQBertNav from './SimplifiedQBertNav';
+import Footer from './Footer'; // New Footer component
 import './SimplifiedLayout.css';
+import { enableMobileTouchEvents } from '../utils/mobileHelpers';
 
 const SimplifiedLayout = () => {
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [currentTheme, setCurrentTheme] = useState('home');
   
-  // Define navigation sections
+  // Define navigation sections with their themes
   const sections = [
     { name: 'Home', path: '/', theme: 'home' },
     { name: 'Nursing', path: '/nursing', theme: 'nursing' },
@@ -17,6 +20,14 @@ const SimplifiedLayout = () => {
     { name: 'Life', path: '/life', theme: 'life' },
     { name: 'About', path: '/about', theme: 'about' }
   ];
+  
+  // Update theme based on current path
+  useEffect(() => {
+    const currentSection = sections.find(section => 
+      location.pathname === section.path || location.pathname.startsWith(`${section.path}/`)
+    );
+    setCurrentTheme(currentSection?.theme || 'home');
+  }, [location.pathname]);
   
   // Handle responsive behavior
   useEffect(() => {
@@ -28,8 +39,14 @@ const SimplifiedLayout = () => {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  useEffect(() => {
+    if (isMobile) {
+      enableMobileTouchEvents();
+    }
+  }, [isMobile]);
+
   return (
-    <div className="site-wrapper">
+    <div className={`site-wrapper theme-${currentTheme}`}>
       {/* Header with title */}
       <header className="site-header">
         <div className="header-content">
@@ -55,7 +72,7 @@ const SimplifiedLayout = () => {
           {/* Q*bert in header for mobile only */}
           {isMobile && (
             <div className="qbert-container mobile">
-              <SimplifiedQBertNav isMobile={true} />
+              <SimplifiedQBertNav isMobile={true} currentTheme={currentTheme} />
             </div>
           )}
           
@@ -84,7 +101,7 @@ const SimplifiedLayout = () => {
       
       {/* Main layout area */}
       <div className="main-layout">
-        {/* Left column - Sidebar */}
+        {/* Desktop sidebar */}
         {!isMobile && (
           <div className="sidebar">
             <nav>
@@ -101,26 +118,50 @@ const SimplifiedLayout = () => {
           </div>
         )}
         
-        {/* Middle column - Q*bert (desktop only) */}
+        {/* Desktop Layout */}
         {!isMobile && (
-          <div className="qbert-panel">
-            <div className="qbert-container desktop">
-              <SimplifiedQBertNav isMobile={false} />
+          <>
+            {/* Middle column - Q*bert */}
+            <div className="qbert-panel">
+              <div className="qbert-container desktop">
+                <SimplifiedQBertNav isMobile={false} currentTheme={currentTheme} />
+              </div>
             </div>
-          </div>
+            
+            {/* Right column - Content */}
+            <main className="content-area desktop">
+              <div className="page-container">
+                <Outlet context={{ currentTheme }} />
+              </div>
+            </main>
+          </>
         )}
         
-        {/* Right column - Content */}
-        {!isMobile ? (
-          <main className="content-area desktop">
-            <Outlet />
-          </main>
-        ) : (
-          <main className="content-area mobile">
-            <Outlet />
+        {/* Mobile content area */}
+        {isMobile && (
+          <main 
+            className="content-area mobile" 
+            style={{ 
+              WebkitOverflowScrolling: 'touch',
+              touchAction: 'auto',
+              overscrollBehavior: 'contain'
+            }}
+          >
+            <div 
+              className="page-container"
+              style={{ 
+                position: 'relative',
+                zIndex: 10 
+              }}
+            >
+              <Outlet context={{ currentTheme }} />
+            </div>
           </main>
         )}
       </div>
+      
+      {/* Footer with social links */}
+      <Footer currentTheme={currentTheme} />
     </div>
   );
 };

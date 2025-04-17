@@ -9,6 +9,7 @@ import LifeUpdates from './pages/LifeUpdates';
 import About from './pages/About';
 import NotFound from './pages/NotFound';
 import './App.css';
+import './styles/PageStyles.css';
 
 function App() {
   return (
