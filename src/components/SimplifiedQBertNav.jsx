@@ -19,6 +19,9 @@ const SimplifiedQBertNav = () => {
   // Ref to track if initialization is done
   const isInitialized = useRef(false);
 
+  // Add this state at the beginning of your component
+  const [previousPath, setPreviousPath] = useState(location.pathname);
+
   // --- Mappings: Added Placeholders ---
   // Map routes to cube IDs (Placeholders don't strictly need entries here if using cubeRoutes directly)
   const routeMap = {
@@ -222,7 +225,6 @@ const SimplifiedQBertNav = () => {
     const ctx = canvas.getContext('2d');
     let frameId;
 
-    // Always update the grid when location changes, not just on init
     const resizeCanvas = () => {
       if (!canvas.parentElement) return; 
       const parentRect = canvas.parentElement.getBoundingClientRect();
@@ -239,35 +241,53 @@ const SimplifiedQBertNav = () => {
     resizeCanvas(); 
     window.addEventListener('resize', resizeCanvas);
 
-    // Initialize or reinitialize the grid and Q*bert
-    gridRef.current = createGrid(canvas.width, canvas.height);
-    
-    qbertRef.current = { 
-      currentCube: routeMap[location.pathname] || 1, 
-      targetCube: routeMap[location.pathname] || 1, 
-      x: 0, y: 0, 
-      moving: false, 
-      jumpProgress: 0, 
-      startX: 0, 
-      startY: 0, 
-      targetX: 0, 
-      targetY: 0, 
-      spriteWidth: 48, 
-      spriteHeight: 48, 
-      spriteImage: new Image(), 
-      spriteLoaded: false 
-    };
-    
-    qbertRef.current.spriteImage.onload = () => {
-      qbertRef.current.spriteLoaded = true;
-    }; 
-    
-    qbertRef.current.spriteImage.onerror = (e) => {
-      console.error("Failed to load Q*bert sprite:", e);
-    }; 
-    
-    qbertRef.current.spriteImage.src = '/qbert-sprite.png';
-    updateQbertPosition();
+    // Only initialize Q*bert and grid if not already initialized
+    // or if there is no existing movement happening
+    if (!qbertRef.current || !gridRef.current) {
+      console.log("Creating new grid and Q*bert instance");
+      
+      // Initialize grid
+      gridRef.current = createGrid(canvas.width, canvas.height);
+      
+      // Initialize Q*bert at current route's position
+      qbertRef.current = { 
+        currentCube: routeMap[location.pathname] || 1, 
+        targetCube: routeMap[location.pathname] || 1, 
+        x: 0, y: 0, 
+        moving: false, 
+        jumpProgress: 0, 
+        startX: 0, 
+        startY: 0, 
+        targetX: 0, 
+        targetY: 0, 
+        spriteWidth: 48, 
+        spriteHeight: 48, 
+        spriteImage: new Image(), 
+        spriteLoaded: false 
+      };
+      
+      qbertRef.current.spriteImage.onload = () => {
+        qbertRef.current.spriteLoaded = true;
+      }; 
+      
+      qbertRef.current.spriteImage.onerror = (e) => {
+        console.error("Failed to load Q*bert sprite:", e);
+      }; 
+      
+      qbertRef.current.spriteImage.src = '/qbert-sprite.png';
+      updateQbertPosition();
+    } else {
+      // If Q*bert exists but isn't moving, update its current cube based on route
+      // WITHOUT teleporting it (don't call updateQbertPosition)
+      if (!qbertRef.current.moving) {
+        const targetCubeId = routeMap[location.pathname];
+        if (targetCubeId && targetCubeId !== qbertRef.current.currentCube) {
+          console.log("Q*bert exists and not moving - will be repositioned by route change handler");
+        }
+      } else {
+        console.log("Q*bert is currently moving - preserving animation state");
+      }
+    }
 
     // Define the handleClick function
     const handleClick = (e) => {
@@ -340,6 +360,32 @@ const SimplifiedQBertNav = () => {
       window.removeEventListener('resize', resizeCanvas);
     };
   }, [location.pathname, navigate]); // Include navigate in dependencies
+
+  // Add a useEffect to detect route changes from navbar
+  useEffect(() => {
+    // Skip on initial render
+    if (previousPath === location.pathname) return;
+    
+    console.log(`Route changed from ${previousPath} to ${location.pathname}`);
+    
+    // If Q*bert is initialized, animate the jump to the new route's cube
+    const qbert = qbertRef.current;
+    const grid = gridRef.current;
+    
+    if (qbert && grid && !qbert.moving) {
+      const targetCubeId = routeMap[location.pathname];
+      
+      // Only animate if we have a valid target cube
+      if (targetCubeId && targetCubeId !== qbert.currentCube) {
+        console.log(`Animating Q*bert jump to cube ${targetCubeId} for route ${location.pathname}`);
+        
+        jumpToNewCube(targetCubeId);
+      }
+    }
+    
+    // Update previous path for next change
+    setPreviousPath(location.pathname);
+  }, [location.pathname]); // Remove previousPath from dependencies
 
   useEffect(() => {
     console.log("SimplifiedQBertNav mounted");
