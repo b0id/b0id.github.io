@@ -162,16 +162,49 @@ const SimplifiedQBertNav = ({ isMobile = false }) => {
 
       // Draw speech bubble using text from state
       if (speechBubbleText) {
-          const bubbleX = drawX + (isMobile ? 15 : 25); const bubbleY = drawY - (isMobile ? 30 : 50);
-          // Adjust width slightly based on text? Or keep fixed.
-          const dynamicWidth = ctx.measureText(speechBubbleText).width + 20;
-          const bubbleW = Math.max(70, dynamicWidth); // Min width 70
-          const bubbleH = 25; const bubbleR = 5;
-          // ... bubble drawing geometry (same) ...
-          ctx.fillStyle = 'white'; ctx.strokeStyle = '#000'; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(bubbleX + bubbleR, bubbleY); ctx.lineTo(bubbleX + bubbleW - bubbleR, bubbleY); ctx.quadraticCurveTo(bubbleX + bubbleW, bubbleY, bubbleX + bubbleW, bubbleY + bubbleR); ctx.lineTo(bubbleX + bubbleW, bubbleY + bubbleH - bubbleR); ctx.quadraticCurveTo(bubbleX + bubbleW, bubbleY + bubbleH, bubbleX + bubbleW - bubbleR, bubbleY + bubbleH); ctx.lineTo(bubbleX + bubbleR, bubbleY + bubbleH); ctx.quadraticCurveTo(bubbleX, bubbleY + bubbleH, bubbleX, bubbleY + bubbleH - bubbleR); ctx.lineTo(bubbleX, bubbleY + bubbleR); ctx.quadraticCurveTo(bubbleX, bubbleY, bubbleX + bubbleR, bubbleY); ctx.closePath(); ctx.fill(); ctx.stroke(); ctx.beginPath(); ctx.moveTo(bubbleX + 10, bubbleY + bubbleH -1); ctx.lineTo(bubbleX + 15, bubbleY + bubbleH + 8); ctx.lineTo(bubbleX + 25, bubbleY + bubbleH -1); ctx.closePath(); ctx.fillStyle = 'white'; ctx.fill(); ctx.stroke();
-          // Draw the text from state
-          ctx.fillStyle = 'black'; ctx.font = 'bold 14px "JetBrains Mono", monospace';
-          ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+          const bubbleX = drawX + (isMobile ? 15 : 25); // Smaller offset for mobile
+          const bubbleY = drawY - (isMobile ? 30 : 50); // Higher position for mobile
+          
+          // Measure text and set bubble width
+          ctx.font = isMobile ? 'bold 12px "JetBrains Mono", monospace' : 'bold 14px "JetBrains Mono", monospace';
+          const dynamicWidth = ctx.measureText(speechBubbleText).width + (isMobile ? 10 : 20);
+          const bubbleW = Math.max(isMobile ? 40 : 70, dynamicWidth); // Smaller min width for mobile
+          const bubbleH = isMobile ? 18 : 25; // Smaller height for mobile
+          const bubbleR = isMobile ? 3 : 5; // Smaller border radius for mobile
+          
+          // Bubble drawing code remains the same
+          ctx.fillStyle = 'white'; 
+          ctx.strokeStyle = '#000'; 
+          ctx.lineWidth = 1; 
+          ctx.beginPath(); 
+          ctx.moveTo(bubbleX + bubbleR, bubbleY); 
+          ctx.lineTo(bubbleX + bubbleW - bubbleR, bubbleY); 
+          ctx.quadraticCurveTo(bubbleX + bubbleW, bubbleY, bubbleX + bubbleW, bubbleY + bubbleR); 
+          ctx.lineTo(bubbleX + bubbleW, bubbleY + bubbleH - bubbleR); 
+          ctx.quadraticCurveTo(bubbleX + bubbleW, bubbleY + bubbleH, bubbleX + bubbleW - bubbleR, bubbleY + bubbleH); 
+          ctx.lineTo(bubbleX + bubbleR, bubbleY + bubbleH); 
+          ctx.quadraticCurveTo(bubbleX, bubbleY + bubbleH, bubbleX, bubbleY + bubbleH - bubbleR); 
+          ctx.lineTo(bubbleX, bubbleY + bubbleR); 
+          ctx.quadraticCurveTo(bubbleX, bubbleY, bubbleX + bubbleR, bubbleY); 
+          ctx.closePath(); 
+          ctx.fill(); 
+          ctx.stroke();
+          
+          // Adjust pointer size for mobile
+          const pointerHeight = isMobile ? 5 : 8;
+          ctx.beginPath(); 
+          ctx.moveTo(bubbleX + 10, bubbleY + bubbleH - 1); 
+          ctx.lineTo(bubbleX + 15, bubbleY + bubbleH + pointerHeight); 
+          ctx.lineTo(bubbleX + 25, bubbleY + bubbleH - 1); 
+          ctx.closePath(); 
+          ctx.fillStyle = 'white'; 
+          ctx.fill(); 
+          ctx.stroke();
+          
+          // Draw the text with font already set above
+          ctx.fillStyle = 'black';
+          ctx.textAlign = 'center'; 
+          ctx.textBaseline = 'middle';
           ctx.fillText(speechBubbleText, bubbleX + bubbleW / 2, bubbleY + bubbleH / 2);
       }
       ctx.restore();
@@ -197,7 +230,7 @@ const SimplifiedQBertNav = ({ isMobile = false }) => {
     const cubes = []; 
     let cubeId = 1;
     // Reduce rows for mobile
-    const rows = isMobile ? 3 : 4;
+    const rows =  4;
 
     for (let row = 0; row < rows; row++) {
       for (let col = 0; col <= row; col++) {
