@@ -1,0 +1,222 @@
+.engineering-two-column {
+    display: flex;
+    gap: 2rem;
+    margin: 2rem 0;
+  }
+  
+  .engineering-tabs {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    min-width: 180px;
+    margin-top: 1rem;
+  }
+  
+  .tab-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.1rem;
+    padding: 1rem 1.5rem;
+    margin-bottom: 0.5rem;
+    background: var(--panel-bg);
+    border: 2px solid transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: border 0.2s, background 0.2s;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .tab-btn.active,
+  .tab-btn:focus {
+    border: 2px solid var(--theme-color);
+    background: var(--theme-bg);
+  }
+  
+  .tab-icon {
+    font-size: 1.3em;
+  }
+  
+  .tab-indicator {
+    position: absolute;
+    left: -8px;
+    width: 6px;
+    height: 48px;
+    border-radius: 4px;
+    background: var(--theme-color);
+    transition: top 0.3s;
+    z-index: 2;
+  }
+  
+  .engineering-section-content {
+    flex: 2;
+    min-width: 0;
+  }
+  
+  /* Isometric grid styling */
+  .isometric-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  
+  .iso-card {
+    background-color: var(--panel-bg);
+    border-radius: 8px;
+    padding: 1.5rem;
+    position: relative;
+    border-bottom: 4px solid var(--theme-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .iso-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .iso-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  /* Tools grid styling */
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  
+  .tool-card {
+    background-color: var(--panel-bg);
+    border-radius: 8px;
+    padding: 1.5rem;
+    border-left: 4px solid var(--theme-color);
+  }
+  
+  .pixel-list {
+    list-style: none;
+    padding-left: 0.5rem;
+    margin: 1rem 0;
+  }
+  
+  .pixel-list li {
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding-left: 1rem;
+  }
+  
+  .pixel-list li::before {
+    content: ">";
+    position: absolute;
+    left: 0;
+    color: var(--theme-color);
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.7rem;
+  }
+  
+  /* Concept list styling */
+  .concept-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  
+  .concept-item {
+    background-color: var(--panel-bg);
+    border-radius: 8px;
+    padding: 1.5rem;
+    border-right: 4px solid var(--theme-color);
+  }
+  
+  /* Intersection points styling */
+  .intersection-points {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  
+  .intersection-item {
+    background-color: var(--panel-bg);
+    border-radius: 8px;
+    padding: 1.5rem;
+    border-top: 4px solid var(--theme-color);
+  }
+  
+  /* --- MOBILE STYLES --- */
+  @media (max-width: 900px) {
+    .engineering-two-column {
+      flex-direction: column;
+    }
+    
+    .engineering-tabs {
+      flex-direction: row;
+      min-width: 0;
+      margin-bottom: 1rem;
+      margin-top: 0;
+      align-items: stretch;
+      width: 100%;
+      justify-content: space-between;
+      position: relative;
+      gap: 0; /* Remove extra space between buttons */
+    }
+    
+    .tab-btn {
+      margin-bottom: 0;
+      margin-right: 0.25rem;
+      min-width: 0;
+      max-width: 100%;
+      flex: 1 1 0;
+      justify-content: center;
+      align-items: center;
+      font-size: 0.95rem;
+      padding: 0.7rem 0.2rem;
+      border-radius: 0;
+      border-bottom: 3px solid transparent;
+      border-left: none;
+      border-right: none;
+      border-top: none;
+      box-sizing: border-box;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      display: flex;
+      flex-shrink: 1;
+    }
+    
+    .tab-btn:last-child {
+      margin-right: 0;
+    }
+    
+    .tab-icon,
+    .tab-label {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      display: inline-block;
+    }
+    
+    .tab-btn.active,
+    .tab-btn:focus {
+      border: none;
+      border-bottom: 3px solid var(--theme-color);
+      background: var(--theme-bg);
+    }
+    
+    .tab-indicator {
+      display: none;
+    }
+    
+    .isometric-grid,
+    .tools-grid,
+    .intersection-points {
+      grid-template-columns: 1fr;
+    }
+  }

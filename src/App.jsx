@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import SimplifiedLayout from './components/SimplifiedLayout';
+import MetaHead from './components/MetaHead'; // Import the new MetaHead component
 import Home from './pages/Home';
 import Nursing from './pages/Nursing';
 import Electronics from './pages/Electronics';
@@ -14,6 +15,9 @@ import './styles/PageStyles.css';
 function App() {
   return (
     <Router>
+      {/* Add the MetaHead component here */}
+      <MetaHead />
+      
       <Routes>
         <Route path="/" element={<SimplifiedLayout />}>
           <Route index element={<Home />} />
