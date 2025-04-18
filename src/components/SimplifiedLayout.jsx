@@ -42,8 +42,15 @@ const SimplifiedLayout = () => {
   useEffect(() => {
     if (isMobile) {
       enableMobileTouchEvents();
+      
+      // Re-apply fix after any route changes
+      return () => {
+        setTimeout(() => {
+          if (isMobile) enableMobileTouchEvents();
+        }, 100);
+      };
     }
-  }, [isMobile]);
+  }, [isMobile, location.pathname]); // Re-run when path changes
 
   return (
     <div className={`site-wrapper theme-${currentTheme}`}>
@@ -144,14 +151,20 @@ const SimplifiedLayout = () => {
             style={{ 
               WebkitOverflowScrolling: 'touch',
               touchAction: 'auto',
-              overscrollBehavior: 'contain'
+              overflowY: 'auto',
+              position: 'relative',
+              height: 'auto',
+              minHeight: 'calc(100vh - 280px)',
+              pointerEvents: 'auto'
             }}
+            onClick={() => console.log("Mobile content clicked")} // Debug click handler
           >
             <div 
               className="page-container"
-              style={{ 
-                position: 'relative',
-                zIndex: 10 
+              style={{ pointerEvents: 'auto' }}
+              onClick={(e) => {
+                console.log("Page container clicked");
+                e.stopPropagation();
               }}
             >
               <Outlet context={{ currentTheme }} />

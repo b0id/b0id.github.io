@@ -1,62 +1,130 @@
 .site-footer {
+  display: block !important; /* Force display */
   background-color: var(--panel-bg);
   border-top: 1px solid var(--border-color);
-  padding: 1.5rem 0;
+  width: 100%;
+  padding: 2rem 0 0;
+  position: relative;
+  z-index: 50;
   margin-top: auto;
 }
 
 .footer-content {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 1.5rem 2rem;
 }
 
-.social-links {
+.footer-brand {
+  flex: 1;
+  min-width: 200px;
+  max-width: 300px;
+}
+
+.footer-logo {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.3rem;
+  color: var(--theme-color);
+  margin-bottom: 0.8rem;
+}
+
+.footer-tagline {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.footer-links {
   display: flex;
-  gap: 1.5rem;
+  gap: 3rem;
+}
+
+.footer-section h3 {
+  font-size: 1rem;
+  color: var(--theme-color);
   margin-bottom: 1rem;
 }
 
-.social-links a {
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-section li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-section a {
   color: var(--text-secondary);
-  font-size: 1.5rem;
+  text-decoration: none;
+  font-size: 0.9rem;
   transition: color 0.2s ease;
 }
 
-.social-links a:hover {
+.footer-section a:hover {
   color: var(--theme-color);
+  text-decoration: underline;
 }
 
-.copyright {
+.footer-bottom {
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 1rem 0;
+  text-align: center;
+  width: 100%;
+}
+
+.footer-bottom p {
   color: var(--text-secondary);
   font-size: 0.8rem;
+  margin: 0;
 }
 
-/* Theme-based footer colors */
-.theme-home .site-footer {
+/* Theme colors */
+.theme-home {
   --theme-color: var(--default-color);
 }
 
-.theme-nursing .site-footer {
+.theme-nursing {
   --theme-color: var(--nursing-color);
 }
 
-.theme-electronics .site-footer {
+.theme-electronics {
   --theme-color: var(--electronics-color);
 }
 
-.theme-engineering .site-footer {
+.theme-engineering {
   --theme-color: var(--engineering-color);
 }
 
-.theme-life .site-footer {
+.theme-life {
   --theme-color: var(--life-color);
 }
 
-.theme-about .site-footer {
+.theme-about {
   --theme-color: var(--about-color);
+}
+
+/* Mobile footer adjustments */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .footer-brand {
+    max-width: 100%;
+  }
+  
+  .footer-links {
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  
+  .footer-section {
+    flex: 1;
+    min-width: 120px;
+  }
 }
