@@ -1,0 +1,159 @@
+.nursing-two-column {
+  display: flex;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+.nursing-tabs {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  min-width: 180px;
+  margin-top: 1rem;
+}
+
+.tab-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.1rem;
+  padding: 1rem 1.5rem;
+  margin-bottom: 0.5rem;
+  background: var(--panel-bg);
+  border: 2px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: border 0.2s, background 0.2s;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.tab-btn.active,
+.tab-btn:focus {
+  border: 2px solid var(--theme-color);
+  background: var(--theme-bg);
+}
+
+.tab-icon {
+  font-size: 1.3em;
+}
+
+.tab-indicator {
+  position: absolute;
+  left: -8px;
+  width: 6px;
+  height: 48px;
+  border-radius: 4px;
+  background: var(--theme-color);
+  transition: top 0.3s;
+  z-index: 2;
+}
+
+.nursing-section-content {
+  flex: 2;
+  min-width: 0;
+}
+
+.nursing-journey-two-column {
+  display: flex;
+  gap: 2rem;
+  margin: 2rem 0;
+}
+.nursing-journey-left {
+  flex: 1;
+  min-width: 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.nursing-journey-right {
+  flex: 2;
+  min-width: 0;
+}
+.nursing-portrait {
+  width: 180px;
+  height: 180px;
+  border-radius: 16px;
+  object-fit: cover;
+  margin: 1.5rem 0;
+}
+.nursing-journey-description {
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+/* --- MOBILE STYLES --- */
+@media (max-width: 900px) {
+  .nursing-two-column {
+    flex-direction: column;
+  }
+  .nursing-tabs {
+    flex-direction: row;
+    min-width: 0;
+    margin-bottom: 1rem;
+    margin-top: 0;
+    align-items: stretch;
+    width: 100%;
+    justify-content: space-between;
+    position: relative;
+    gap: 0; /* Remove extra space between buttons */
+  }
+  .tab-btn {
+    margin-bottom: 0;
+    margin-right: 0.25rem;
+    min-width: 0;
+    max-width: 100%;
+    flex: 1 1 0;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.95rem;
+    padding: 0.7rem 0.2rem;
+    border-radius: 0;
+    border-bottom: 3px solid transparent;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    box-sizing: border-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: flex;
+    flex-shrink: 1;
+  }
+  .tab-btn:last-child {
+    margin-right: 0;
+  }
+  .tab-icon,
+  .tab-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+  }
+  .tab-btn.active,
+  .tab-btn:focus {
+    border: none;
+    border-bottom: 3px solid var(--theme-color);
+    background: var(--theme-bg);
+  }
+  .tab-indicator {
+    display: none;
+  }
+  .nursing-journey-two-column {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .nursing-journey-left,
+  .nursing-journey-right {
+    align-items: center;
+    min-width: 0;
+  }
+  .nursing-portrait {
+    width: 120px;
+    height: 120px;
+    margin: 1rem 0;
+  }
+}

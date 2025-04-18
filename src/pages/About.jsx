@@ -5,7 +5,12 @@ const About = () => {
   return (
     <div className="about-page">
       <div className="about-header glass-panel">
-        <div className="pixel-portrait"></div>
+        <img
+          className="pixel-portrait"
+          src="/115111701.jpeg"
+          alt="Portrait"
+          style={{ width: 96, height: 96, borderRadius: '12px', objectFit: 'cover' }}
+        />
         <div className="about-intro">
           <h2>About Me</h2>
           <p className="tagline">A generalist exploring the intersections of multiple disciplines</p>

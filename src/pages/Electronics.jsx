@@ -1,10 +1,53 @@
-import React from 'react';
+import React, { useState } from 'react';
+import './Electronics.css';
+
+// Placeholder component for project details
+const ProjectDetails = ({ project }) => {
+  if (!project) {
+    return (
+      <div className="project-details-placeholder">
+        <p>Select a project to view details.</p>
+      </div>
+    );
+  }
+  return (
+    <div className="project-details">
+      <h3>{project.title}</h3>
+      <div className="pixel-tag">{project.tag}</div>
+      <p>{project.description}</p>
+      <div className="pixel-button">{project.buttonText}</div>
+    </div>
+  );
+};
+
+const projects = [
+  {
+    title: "Arduino-Based Vitals Monitor",
+    tag: "Healthcare",
+    description: "A custom-built patient monitoring system using Arduino and various sensors to track vitals. The intersection of my nursing studies and electronics passion.",
+    buttonText: "View Project"
+  },
+  {
+    title: "Retro Gaming Console",
+    tag: "Entertainment",
+    description: "A Raspberry Pi-powered gaming console housed in a custom 3D printed case, designed to resemble classic 8-bit systems with modern conveniences.",
+    buttonText: "View Project"
+  },
+  {
+    title: "IoT Environmental Monitor",
+    tag: "Sensing",
+    description: "A network of sensors that monitor air quality, temperature, and humidity throughout my home, sending data to a central dashboard.",
+    buttonText: "View Project"
+  }
+];
 
 const Electronics = () => {
+  const [selected, setSelected] = useState(null);
+
   return (
     <div className="page-container">
       <h1 className="page-title">Electronics</h1>
-      
+
       <div className="pixel-box">
         <h2>Circuit Playground</h2>
         <p>
@@ -14,47 +57,30 @@ const Electronics = () => {
           fundamental principles to create intricate systems.
         </p>
       </div>
-      
-      <div className="projects-grid">
-        <div className="project-card">
-          <div className="project-header">
-            <h3>Arduino-Based Vitals Monitor</h3>
-            <div className="pixel-tag">Healthcare</div>
-          </div>
-          <p>
-            A custom-built patient monitoring system using Arduino and various
-            sensors to track vitals. The intersection of my nursing studies
-            and electronics passion.
-          </p>
-          <div className="pixel-button">View Project</div>
+
+      {/* Responsive two-column layout */}
+      <div className="projects-two-column">
+        <div className="projects-list">
+          {projects.map((project, idx) => (
+            <div
+              key={project.title}
+              className={`project-card${selected === idx ? ' selected' : ''}`}
+              onClick={() => setSelected(idx)}
+              tabIndex={0}
+              role="button"
+              aria-pressed={selected === idx}
+            >
+              <div className="project-header">
+                <h3>{project.title}</h3>
+                <div className="pixel-tag">{project.tag}</div>
+              </div>
+              <div className="pixel-button">{project.buttonText}</div>
+            </div>
+          ))}
         </div>
-        
-        <div className="project-card">
-          <div className="project-header">
-            <h3>Retro Gaming Console</h3>
-            <div className="pixel-tag">Entertainment</div>
-          </div>
-          <p>
-            A Raspberry Pi-powered gaming console housed in a custom 3D printed
-            case, designed to resemble classic 8-bit systems with modern
-            conveniences.
-          </p>
-          <div className="pixel-button">View Project</div>
-        </div>
-        
-        <div className="project-card">
-          <div className="project-header">
-            <h3>IoT Environmental Monitor</h3>
-            <div className="pixel-tag">Sensing</div>
-          </div>
-          <p>
-            A network of sensors that monitor air quality, temperature, and
-            humidity throughout my home, sending data to a central dashboard.
-          </p>
-          <div className="pixel-button">View Project</div>
-        </div>
+        <ProjectDetails project={projects[selected]} />
       </div>
-      
+
       <div className="pixel-box">
         <h2>Component Library</h2>
         <p>
@@ -62,7 +88,6 @@ const Electronics = () => {
           project. Browse through the categories below to see what I've been
           working with:
         </p>
-        
         <div className="component-list">
           <div className="component-category">
             <span className="category-icon">⚡</span>
@@ -82,7 +107,7 @@ const Electronics = () => {
           </div>
         </div>
       </div>
-      
+
       <div className="coming-soon">
         <div className="pixel-animated-text">More projects coming soon!</div>
         <div className="pixel-progress-bar">

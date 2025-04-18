@@ -30,6 +30,10 @@
   margin-bottom: 0.8rem;
 }
 
+.footer-logo-img {
+  transform: translate(-200px, 65px); /* Right 10px, Up 5px */
+}
+
 .footer-tagline {
   color: var(--text-secondary);
   font-size: 0.9rem;
@@ -107,24 +111,115 @@
   --theme-color: var(--about-color);
 }
 
+/* Footer navigation columns */
+.footer-nav-columns {
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+}
+
+.footer-nav-columns ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-nav-columns li {
+  margin-bottom: 0.5rem;
+}
+
+/* Connect icons styling */
+.footer-connect-list {
+  display: flex;
+  gap: 1.2rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-connect-list li a {
+  color: var(--text-secondary);
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.footer-connect-list li a:hover {
+  color: var(--theme-color);
+}
+
+.footer-logo-img {
+  display: block;
+  margin: 0 auto 0.5rem auto;
+  transform: translate(-200px, 65px); /* Right 10px, Up 5px */
+}
+
 /* Mobile footer adjustments */
 @media (max-width: 768px) {
   .footer-content {
     flex-direction: column;
     gap: 2rem;
+    padding: 0 1rem 2rem;
   }
   
   .footer-brand {
     max-width: 100%;
+    min-width: 0;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1.5rem;
   }
   
+  /* Brand unit: logo left, text right, centered as a block */
+  .footer-brand-unit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .footer-logo-img {
+    transform: none !important;
+    margin: 0 !important;
+    display: block;
+    width: 48px;
+    height: 48px;
+  }
+
+  .footer-logo,
+  .footer-tagline {
+    text-align: left;
+    margin: 0;
+  }
+
+  .footer-logo {
+    font-size: 1.1rem;
+    margin-bottom: 0.2rem;
+  }
+
+  .footer-tagline {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+  }
+
   .footer-links {
     flex-wrap: wrap;
     gap: 2rem;
+    flex-direction: column;
+    gap: 1.5rem;
   }
   
   .footer-section {
     flex: 1;
     min-width: 120px;
+  }
+
+  .footer-nav-columns {
+    flex-direction: column;
+    gap: 0.5rem;
   }
 }
