@@ -10,29 +10,30 @@ const tabList = [
 // Nursing projects data
 const nursingProjects = [
   {
-    title: "Vitals Monitoring Interface",
-    tag: "Patient Safety",
+    title: "Microbial Outbreak Case Study App",
+    tag: "Epidemiology",
     description:
-      "A redesigned patient monitoring interface that uses principles from emergent systems and boid algorithms to visually represent changes in patient vitals over time. The pattern-based display helps nurses quickly identify concerning trends.",
-    status: "Prototype",
-    buttonText: "View Project",
+      "An interactive teaching tool for nursing and microbiology students that guides users through the investigation of a simulated summer camp outbreak. Includes data visualization, symptom tracking, diagnostic tools, and differential diagnosis workflows.",
+    status: "Complete",
+    buttonText: "View Project"
   },
   {
-    title: "Medication Administration Assistant",
-    tag: "Education",
+    title: "Atypical Antipsychotics Classifier",
+    tag: "Mental Health",
     description:
-      "A mobile app concept that assists nursing students in learning medication administration protocols through interactive scenarios and real-time feedback. Incorporates barcode scanning and visual recognition of medications.",
-    status: "Design Phase",
-    buttonText: "View Project",
+      "A reference web app that classifies atypical antipsychotic medications by receptor activity, generation, and clinical use case. Designed to help students and clinicians visualize pharmacodynamics and side effect profiles with clarity.",
+    status: "Deployed",
+    buttonText: "View Project"
   },
   {
-    title: "Clinical Decision Support System",
-    tag: "Research",
+    title: "Patient Education Visual Aids",
+    tag: "Communication",
     description:
-      "A research project exploring how machine learning algorithms can assist nurses in clinical decision-making by identifying patterns in patient data that might indicate early warning signs of deterioration.",
-    status: "Research",
-    buttonText: "View Project",
+      "A series of illustrated, low-literacy handouts created for use in clinical settings to explain complex conditions like hypertension, diabetes, and heart failure. Focuses on accessibility, visuals, and nurse-patient rapport.",
+    status: "In Use",
+    buttonText: "View Project"
   },
+  
 ];
 
 // Project details component

@@ -11,25 +11,26 @@ const tabList = [
 // Engineering projects data
 const engineeringProjects = [
   {
-    title: "Bridge Load Simulator",
-    description: "A small-scale bridge simulation that demonstrates structural principles and load distribution for educational purposes.",
-    icon: "🏗️"
+    title: "Custom Fluid Bed Coffee Roaster",
+    description: "A home-built fluid bed roaster capable of 2-kilo batches in under 12 minutes, engineered for precise thermal profiling and roast development.",
+    icon: "🌀"
   },
   {
-    title: "Smart Ventilation System",
-    description: "An adaptive ventilation system that optimizes airflow based on room occupancy, temperature, and air quality metrics.",
-    icon: "💨"
+    title: "ForgeRAM: AI Memory Orchestration",
+    description: "A Rust-based memory management system for multi-GPU AI inference on ROCm, optimizing tensor flow across large local models.",
+    icon: "🧠"
   },
   {
-    title: "Waste Recycling Sorter",
-    description: "A prototype for an automated waste sorting system using computer vision to identify and separate recyclable materials.",
-    icon: "🔄"
+    title: "Rainwater Harvesting System",
+    description: "An off-grid, gravity-fed water infrastructure with seasonal bypasses and filtration, built to support ecological restoration and sustainable farming.",
+    icon: "🌧️"
   },
   {
-    title: "Water Rocket Optimizations",
-    description: "Experiments with water rocket designs to maximize altitude and stability through pressure system modifications.",
-    icon: "🚀"
+    title: "PCIe Layout & Multi-Boot Redesign",
+    description: "Reconfigured PC hardware layout for optimal GPU and NVMe performance, with clean bootloader integration across Arch, Fedora, and Windows.",
+    icon: "🧰"
   }
+  
 ];
 
 // Engineering concepts data
@@ -45,28 +46,78 @@ const engineeringConcepts = [
   {
     title: "Redundancy & Resilience",
     description: "Designing systems that can withstand failures through redundant components and resilient architectures."
+  },
+  {
+    title: "Modular Design",
+    description: "Breaking complex builds into self-contained components for easier maintenance, adaptability, and scaling."
+  },
+  {
+    title: "Resource Efficiency",
+    description: "Engineering with constraint in mind—maximizing output with minimal waste in power, time, and material."
+  },
+  {
+    title: "Fault Tolerance",
+    description: "Accepting that failure will happen—and engineering pathways for graceful degradation, not catastrophic collapse."
+  },
+  {
+    title: "System Interoperability",
+    description: "Ensuring components with different origins can communicate and collaborate reliably in the same environment."
   }
 ];
+
 
 // Engineering tools data
 const engineeringTools = [
   {
     category: "CAD Software",
-    tools: ["Fusion 360", "SolidWorks", "FreeCAD"]
+    tools: ["Fusion 360", "SolidWorks", "FreeCAD", "Onshape", "Blender (for visual prototyping)"]
   },
   {
     category: "Simulation",
-    tools: ["ANSYS", "MATLAB", "Custom Python Simulations"]
+    tools: ["ANSYS", "MATLAB", "COMSOL Multiphysics", "QGIS", "Custom Python Simulations", "GeoPandas"]
   },
   {
     category: "Fabrication",
-    tools: ["3D Printing", "Laser Cutting", "CNC Machining"]
+    tools: ["3D Printing", "Laser Cutting", "CNC Machining", "Manual Lathe & Mill", "Plasma Cutting"]
   },
   {
     category: "Electronics",
-    tools: ["Eagle PCB", "Oscilloscopes & Multimeters", "Soldering Equipment"]
+    tools: ["Eagle PCB", "KiCad", "Oscilloscopes & Multimeters", "Logic Analyzers", "Soldering Stations", "Reflow Ovens"]
+  },
+  {
+    category: "Programming & Scripting",
+    tools: ["Python", "Rust", "Bash", "JavaScript", "Node.js", "C++", "Go", "Julia"]
+  },
+  {
+    category: "AI & Data Science",
+    tools: ["PyTorch", "TensorFlow", "Llama.cpp", "Pandas", "Jupyter", "R", "SciKit-Learn", "ROCm"]
+  },
+  {
+    category: "Embedded Systems & IoT",
+    tools: ["Arduino", "ESP32", "Raspberry Pi", "MicroPython", "PlatformIO", "MQTT"]
+  },
+  {
+    category: "Version Control & Deployment",
+    tools: ["Git", "GitHub", "Vercel", "Docker", "CI/CD Pipelines", "Nginx"]
+  },
+  {
+    category: "Knowledge Management",
+    tools: ["Obsidian", "Zotero", "Anki", "Markdown-based Vault Systems", "Templater", "Dataview", "QuickAdd"]
+  },
+  {
+    category: "Networking & Security",
+    tools: ["Wireshark", "nmap", "Kali Linux", "UFW", "OpenVPN", "Fail2ban", "Burp Suite"]
+  },
+  {
+    category: "Healthcare & Clinical",
+    tools: ["SIM Lab Gear", "EMR Systems", "Medication Administration Records", "Cardiac Monitors", "Diagnostic Tools"]
+  },
+  {
+    category: "Craftsmanship & Restoration",
+    tools: ["Lathe (Woodworking)", "Hand Planes", "Kilns", "Potter’s Wheel", "Joinery Tools", "Restoration Epoxies"]
   }
 ];
+
 
 const Engineering = () => {
   const [activeSection, setActiveSection] = useState('projects');

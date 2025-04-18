@@ -17,15 +17,25 @@ const Home = () => {
           />
           <div className="about-text">
             <p>
-              I'm a generalist to the extreme—a polymath with a background in science,
-              engineering, and electronics. Currently pursuing nursing education, I
-              explore the connections between seemingly disparate fields.
+            I’m not built for a single lane. I’m a generalist—wired for breadth, driven by depth, and drawn to the liminal spaces between disciplines. My background spans science, electronics, systems engineering, and now, nursing—where technical mastery meets human care. I move between code and compassion, signal and soul.
             </p>
             <p>
-              My online persona revolves around the concept of boids (bird-oid objects),
-              an algorithm that simulates the flocking behavior of birds. Just as simple
-              rules guide each boid to create complex flocking behavior, I follow my
-              curiosity across disciplines to discover emergent patterns and connections.
+            I orbit around the idea of boids—simple agents following elegant rules that, together, create emergent beauty. That’s how I work, too. I trust curiosity to guide the way, pattern recognition to shape understanding, and hands-on building to root abstract ideas in something real.
+            </p>
+            <p>
+            Where others see disjointed paths, I see convergence. I believe engineering and empathy belong in the same sentence. That clinical care can be improved by system design. That resilience isn’t theory—it’s lived experience, refined into practice.
+            </p>
+            <p>
+            I make tools, craft systems, and connect knowledge across boundaries. Whether I’m restoring old machines or designing new ones, writing code or mentoring students, debugging BIOS or exploring bioethics—it all feeds one goal:
+            </p>
+            <p>
+            To understand, repair, and reimagine the systems we live inside.
+            Whether they’re electronic, ecological, institutional, or internal.
+
+            If you’ve ever felt too many things, chased too many ideas, or refused to be defined by just one field—
+            you’re in the right place.
+
+
             </p>
           </div>
         </div>

@@ -22,17 +22,18 @@ const ProjectDetails = ({ project }) => {
 
 const projects = [
   {
-    title: "Arduino-Based Vitals Monitor",
-    tag: "Healthcare",
-    description: "A custom-built patient monitoring system using Arduino and various sensors to track vitals. The intersection of my nursing studies and electronics passion.",
+    title: "Arduino-Based Coffee Roaster Controller",
+    tag: "Coffee Roasting",
+    description: "Controller system using Arduino and various sensors to track roast progess. The intersection of my coffee studies and electronics passion.",
     buttonText: "View Project"
   },
   {
-    title: "Retro Gaming Console",
-    tag: "Entertainment",
-    description: "A Raspberry Pi-powered gaming console housed in a custom 3D printed case, designed to resemble classic 8-bit systems with modern conveniences.",
+    title: "BlackArch Panel",
+    tag: "Cybersecurity",
+    description: "A comprehensive CLI utility for exploring, managing, and streamlining over 2,800 BlackArch Linux security tools with keyword search, tool metadata, and automated script generation.",
     buttonText: "View Project"
-  },
+  }, 
+  
   {
     title: "IoT Environmental Monitor",
     tag: "Sensing",
