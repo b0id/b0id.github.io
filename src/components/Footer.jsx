@@ -2,15 +2,12 @@ import React from 'react';
 import './Footer.css';
 
 const Footer = ({ currentTheme }) => {
-  // Get current year for copyright
-  const currentYear = new Date().getFullYear();
-  
   return (
     <footer className={`site-footer theme-${currentTheme || 'home'}`}>
       <div className="footer-content">
         <div className="footer-brand">
           <div className="footer-logo">b0id.dev</div>
-          <p className="footer-tagline">Exploring the intersections of nursing, tech & science</p>
+          <p className="footer-tagline">A Digital Polymath Playground</p>
         </div>
         
         <div className="footer-links">
@@ -20,6 +17,9 @@ const Footer = ({ currentTheme }) => {
               <li><a href="/">Home</a></li>
               <li><a href="/nursing">Nursing</a></li>
               <li><a href="/electronics">Electronics</a></li>
+              <li><a href="/engineering">Engineering</a></li>
+              <li><a href="/life">Life</a></li>
+              <li><a href="/about">About</a></li>
             </ul>
           </div>
           
@@ -35,7 +35,7 @@ const Footer = ({ currentTheme }) => {
       </div>
       
       <div className="footer-bottom">
-        <p>&copy; {currentYear} b0id.dev | All rights reserved</p>
+        <p>&copy; {new Date().getFullYear()} b0id.dev | All rights reserved</p>
       </div>
     </footer>
   );
