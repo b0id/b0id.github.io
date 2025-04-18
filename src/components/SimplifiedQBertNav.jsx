@@ -162,7 +162,7 @@ const SimplifiedQBertNav = ({ isMobile = false }) => {
 
       // Draw speech bubble using text from state
       if (speechBubbleText) {
-          const bubbleX = drawX + 25; const bubbleY = drawY - 50;
+          const bubbleX = drawX + (isMobile ? 15 : 25); const bubbleY = drawY - (isMobile ? 30 : 50);
           // Adjust width slightly based on text? Or keep fixed.
           const dynamicWidth = ctx.measureText(speechBubbleText).width + 20;
           const bubbleW = Math.max(70, dynamicWidth); // Min width 70
@@ -288,8 +288,8 @@ const SimplifiedQBertNav = ({ isMobile = false }) => {
         startY: 0, 
         targetX: 0, 
         targetY: 0, 
-        spriteWidth: 48, 
-        spriteHeight: 48, 
+        spriteWidth: isMobile ? 20 : 48,
+        spriteHeight: isMobile ? 20 : 48,
         spriteImage: new Image(), 
         spriteLoaded: false 
       };
