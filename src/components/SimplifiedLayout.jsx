@@ -78,7 +78,14 @@ const SimplifiedLayout = () => {
           
           {/* Q*bert in header for mobile only */}
           {isMobile && (
-            <div className="qbert-container mobile">
+            <div className="qbert-container mobile" style={{
+              width: '60px',
+              height: '60px',
+              minWidth: '60px',
+              minHeight: '60px',
+              position: 'relative',
+              overflow: 'visible'
+            }}>
               <SimplifiedQBertNav isMobile={true} currentTheme={currentTheme} />
             </div>
           )}

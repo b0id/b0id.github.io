@@ -181,8 +181,8 @@ const SimplifiedQBertNav = ({ isMobile = false }) => {
 
   // --- Grid Creation - Modified for Responsive Size ---
   const createGrid = (width, height) => {
-    // Scale more appropriately for mobile
-    const scale = isMobile ? 0.3 : 1; // Smaller scale for mobile
+    // Scale appropriately for the view
+    const scale = isMobile ? 0.3 : 1;
     
     const centerX = width / 2;
     // Move grid slightly higher to accommodate view
@@ -235,17 +235,30 @@ const SimplifiedQBertNav = ({ isMobile = false }) => {
 
     const resizeCanvas = () => {
       if (!canvas.parentElement) return; 
+      
+      // ALWAYS use these exact pixel dimensions for mobile
+      if (isMobile) {
+        canvas.width = 100;
+        canvas.height = 100;
+        console.log(`Mobile canvas size force-set to: ${canvas.width}x${canvas.height}`);
+        
+        // Re-initialize grid when size changes
+        gridRef.current = createGrid(canvas.width, canvas.height);
+        updateQbertPosition();
+        return;
+      }
+      
+      // Normal desktop sizing logic continues here
       const parentRect = canvas.parentElement.getBoundingClientRect();
       console.log("Parent element dimensions:", parentRect.width, parentRect.height);
       
-      // Set size based on isMobile prop
-      const newWidth = isMobile ? 100 : (parentRect.width - 32);
-      const newHeight = isMobile ? 100 : 400;
+      const newWidth = parentRect.width - 32;
+      const newHeight = 400;
       
       if (canvas.width !== newWidth || canvas.height !== newHeight) {
         canvas.width = newWidth; 
         canvas.height = newHeight;
-        console.log(`Canvas internal size set to: ${canvas.width}x${canvas.height}`);
+        console.log(`Desktop canvas size set to: ${canvas.width}x${canvas.height}`);
         
         // Re-initialize grid when size changes
         gridRef.current = createGrid(canvas.width, canvas.height);
@@ -426,9 +439,11 @@ const SimplifiedQBertNav = ({ isMobile = false }) => {
           cursor: 'pointer', 
           borderRadius: '4px',
           border: 'none',
-          width: '100%',
-          height: '100%',
-          display: 'block'
+          width: isMobile ? '100px' : '100%',
+          height: isMobile ? '100px' : '100%',
+          display: 'block',
+          position: isMobile ? 'absolute' : 'relative',
+          ...isMobile ? {top: '-20px', left: '-20px'} : {}
         }}
       />
     </div>
