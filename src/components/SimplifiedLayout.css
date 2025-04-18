@@ -940,3 +940,223 @@ html, body, #root {
   max-width: none;
   max-height: none;
 }
+
+/* Add these CSS rules to src/components/SimplifiedLayout.css */
+
+/* Fix footer visibility on mobile */
+@media (max-width: 768px) {
+  /* Enable proper scrolling for the entire site on mobile */
+  html, body, #root {
+    height: auto;
+    min-height: 100%;
+    overflow-x: hidden;
+    overflow-y: visible;
+    position: relative;
+  }
+  
+  /* Improve site wrapper layout */
+  .site-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+  }
+  
+  /* Ensure main layout takes available space without hiding footer */
+  .main-layout {
+    flex: 1 0 auto;
+    min-height: auto;
+    height: auto !important;
+    max-height: none;
+    position: relative;
+    overflow: visible;
+    padding-bottom: 1rem;
+  }
+  
+  /* Optimize mobile content area with room for footer */
+  .content-area.mobile {
+    height: auto !important;
+    min-height: 50vh;
+    max-height: none;
+    overflow-y: visible;
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Make sure footer stays at the bottom */
+  .site-footer {
+    margin-top: auto;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    height: auto;
+  }
+  
+  /* Prevent content overlap with footer */
+  .page-container {
+    padding-bottom: 2rem;
+  }
+  
+  /* Stop footer image overlaps */
+  .footer-logo-img {
+    transform: none !important;
+    position: static !important;
+  }
+}
+
+/* Fix specific layout issues with Q*bert and content areas */
+@media (max-width: 768px) {
+  /* Fix qbert container positioning in mobile */
+  .qbert-container.mobile {
+    position: relative;
+    top: auto;
+    right: auto;
+    overflow: visible;
+  }
+  
+  /* Ensure proper stacking for mobile view */
+  .site-header,
+  .mobile-nav,
+  .main-layout,
+  .site-footer {
+    width: 100%;
+    position: relative;
+  }
+  
+  /* Prevent negative margins or transforms that could hide footer */
+  .site-footer * {
+    transform: none !important;
+  }
+  
+  /* Fix any potential scroll issues */
+  .site-wrapper {
+    -webkit-overflow-scrolling: touch;
+    max-height: none;
+    overflow-y: auto;
+  }
+}
+/* CRITICAL MOBILE SCROLLING FIXES - These should override any previous styles */
+@media (max-width: 768px) {
+  /* Root elements must allow scrolling */
+  html, body, #root {
+    height: 100%;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    position: static !important;
+    touch-action: auto !important;
+    overscroll-behavior-y: auto;
+  }
+  
+  /* Site wrapper should allow content to scroll naturally */
+  .site-wrapper {
+    min-height: 100%;
+    height: auto !important;
+    overflow-y: visible !important;
+    position: relative !important;
+    display: flex;
+    flex-direction: column;
+    touch-action: auto !important;
+  }
+  
+  /* Header should be fixed at top if needed */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    width: 100%;
+    flex-shrink: 0;
+  }
+  
+  /* Mobile nav should be sticky below header */
+  .mobile-nav.open {
+    position: sticky;
+    top: 100px; /* Match header height */
+    z-index: 998;
+    width: 100%;
+    flex-shrink: 0;
+  }
+  
+  /* Main content must allow scrolling */
+  .main-layout {
+    flex: 1 0 auto;
+    min-height: 0;
+    height: auto !important;
+    max-height: none !important;
+    position: relative !important;
+    overflow: visible !important;
+    touch-action: auto !important;
+    display: block;
+  }
+  
+  /* Content area must allow scrolling */
+  .content-area.mobile {
+    height: auto !important;
+    min-height: 50vh;
+    overflow-y: visible !important;
+    -webkit-overflow-scrolling: touch !important;
+    position: relative !important;
+    padding-bottom: 2rem;
+    touch-action: auto !important;
+    pointer-events: auto !important;
+  }
+  
+  /* Apply to any container that might be blocking touch events */
+  .page-container, 
+  .pixel-box,
+  .iso-card,
+  .tab-btn,
+  .concept-item,
+  .project-card,
+  .intersection-item,
+  .tools-grid {
+    touch-action: auto !important;
+    pointer-events: auto !important;
+    position: relative;
+    z-index: 5;
+  }
+  
+  /* Ensure links and buttons are clickable */
+  a, button, input, select, [role="button"] {
+    pointer-events: auto !important;
+    touch-action: auto !important;
+    cursor: pointer;
+    position: relative;
+    z-index: 10;
+  }
+  
+  /* Footer should be at the bottom naturally */
+  .site-footer {
+    width: 100%;
+    margin-top: auto;
+    position: relative;
+    flex-shrink: 0;
+    z-index: 50;
+  }
+  
+  /* Remove any potential interference from the Q*bert container */
+  .qbert-container.mobile {
+    position: relative;
+    pointer-events: auto;
+    touch-action: none; /* This prevents it from capturing scroll gestures */
+  }
+}
+
+/* Fix for iOS Safari momentum scrolling */
+@media (max-width: 768px) {
+  /* Add -webkit-overflow-scrolling to all scrollable containers */
+  .content-area.mobile,
+  .page-container,
+  .main-layout,
+  .site-wrapper,
+  body {
+    -webkit-overflow-scrolling: touch !important;
+  }
+  
+  /* Fix for overlapping position:fixed elements on mobile */
+  * {
+    transform: translateZ(0);
+  }
+}
