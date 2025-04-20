@@ -6,7 +6,7 @@ const MetaHead = ({
   title = "b0id.dev | A Digital Polymath Playground",
   description = "Exploring the intersections of nursing, electronics, engineering, and science through the lens of emergent behavior.",
   image = "/115111701.jpeg", // Default to your profile image
-  url = "https://b0id.dev",
+  url = "https://b0id-github-io.vercel.app/",
   type = "website"
 }) => {
   const location = useLocation();
@@ -34,7 +34,8 @@ const MetaHead = ({
       
       meta.setAttribute('content', content);
     };
-    
+    updateMetaTag('og:image:width', '400');
+    updateMetaTag('og:image:height', '400');
     // Standard meta tags
     updateMetaTag('description', description);
     
