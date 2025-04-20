@@ -259,3 +259,64 @@
   text-align: justify;
   margin-bottom: 0.5rem;
 }
+
+/* Collapsible About Section */
+.about-preview {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: background-color 0.2s;
+  margin-top: 1rem;
+}
+
+.about-preview:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.about-preview-content {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.about-teaser-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-grow: 1;
+  margin-left: 1rem;
+}
+
+.about-teaser {
+  font-weight: bold;
+  margin: 0;
+  color: var(--primary-color);
+}
+
+.expand-icon {
+  margin-left: 10px;
+  transition: transform 0.3s;
+  color: var(--primary-color);
+}
+
+.expand-icon.expanded {
+  transform: rotate(180deg);
+}
+
+.about-content {
+  margin-top: 1rem;
+  animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(-10px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}

@@ -5,14 +5,18 @@ const BoidCanvas = (props) => {
   // Add props for opacity and other styling
   const { opacity = 1, showBorder = false } = props;
 
+  // Add mobile detection
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  const userChangedSize = useRef(false);
+  
   // Refs for canvas and animation frame
   const canvasRef = useRef(null);
   const animationFrameId = useRef(null);
 
   // --- State for sliders ---
-  // Existing
+  // Updated boidSize to be smaller on mobile by default
   const [speed, setSpeed] = useState(0.1);
-  const [boidSize, setBoidSize] = useState(6);
+  const [boidSize, setBoidSize] = useState(isMobile ? 3 : 6);
   const [visualRange, setVisualRange] = useState(80);
   const [avoidRadius, setAvoidRadius] = useState(28);
   // New sliders for factors
@@ -20,6 +24,24 @@ const BoidCanvas = (props) => {
   const [separationFactor, setSeparationFactor] = useState(0.195); // Separation strength
   const [alignmentFactor, setAlignmentFactor] = useState(0.00); // Alignment strength
   // ------------------------
+
+  // Check for mobile device on resize
+  useEffect(() => {
+    const checkMobile = () => {
+      const mobile = window.innerWidth < 768;
+      setIsMobile(mobile);
+    };
+    
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+  
+  // Update boid size when mobile status changes (only if user hasn't manually changed it)
+  useEffect(() => {
+    if (!userChangedSize.current) {
+      setBoidSize(isMobile ? 3 : 6);
+    }
+  }, [isMobile]);
 
   // Refs to store current simulation parameters for access within animation loop
   // Updated to include new factors
@@ -232,7 +254,17 @@ const BoidCanvas = (props) => {
         </label>
         <label>
           <span>Boid Size: ({boidSize})</span>
-          <input type="range" min="2" max="10" step="1" value={boidSize} onChange={(e) => setBoidSize(parseInt(e.target.value, 10))} />
+          <input 
+            type="range" 
+            min="2" 
+            max="10" 
+            step="1" 
+            value={boidSize} 
+            onChange={(e) => {
+              userChangedSize.current = true;
+              setBoidSize(parseInt(e.target.value, 10));
+            }} 
+          />
         </label>
         <label>
           <span>Visual Range: ({visualRange})</span>
