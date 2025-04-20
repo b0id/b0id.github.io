@@ -1,20 +1,24 @@
 import React, { useEffect, useRef, useState } from 'react';
+import './BoidCanvas.css'; // We'll create this CSS file
 
-const BoidCanvas = () => {
+const BoidCanvas = (props) => {
+  // Add props for opacity and other styling
+  const { opacity = 1, showBorder = false } = props;
+
   // Refs for canvas and animation frame
   const canvasRef = useRef(null);
   const animationFrameId = useRef(null);
 
   // --- State for sliders ---
   // Existing
-  const [speed, setSpeed] = useState(1);
-  const [boidSize, setBoidSize] = useState(2);
-  const [visualRange, setVisualRange] = useState(75);
-  const [avoidRadius, setAvoidRadius] = useState(20);
+  const [speed, setSpeed] = useState(0.1);
+  const [boidSize, setBoidSize] = useState(6);
+  const [visualRange, setVisualRange] = useState(80);
+  const [avoidRadius, setAvoidRadius] = useState(28);
   // New sliders for factors
-  const [cohesionFactor, setCohesionFactor] = useState(0.005); // Cohesion strength
-  const [separationFactor, setSeparationFactor] = useState(0.05); // Separation strength
-  const [alignmentFactor, setAlignmentFactor] = useState(0.05); // Alignment strength
+  const [cohesionFactor, setCohesionFactor] = useState(0.003); // Cohesion strength
+  const [separationFactor, setSeparationFactor] = useState(0.195); // Separation strength
+  const [alignmentFactor, setAlignmentFactor] = useState(0.00); // Alignment strength
   // ------------------------
 
   // Refs to store current simulation parameters for access within animation loop
@@ -31,10 +35,6 @@ const BoidCanvas = () => {
 
   // Ref for the boids array
   const boids = useRef([]);
-
-  // Fixed canvas dimensions
-  const canvasWidth = 200;
-  const canvasHeight = 200;
 
   // Update param refs whenever state changes
   // Updated dependencies to include new factors
@@ -54,20 +54,29 @@ const BoidCanvas = () => {
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext('2d');
-    canvas.width = canvasWidth;
-    canvas.height = canvasHeight;
+    
+    // Function to resize canvas to match parent
+    const resizeCanvas = () => {
+      if (canvas.parentElement) {
+        canvas.width = canvas.parentElement.offsetWidth;
+        canvas.height = canvas.parentElement.offsetHeight;
+      }
+    };
+    
+    // Set initial size and listen for window resize
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
 
     // --- Boids Logic Functions (using paramsRef) ---
 
     const distance = (b1, b2) => Math.hypot(b1.x - b2.x, b1.y - b2.y);
 
     const keepWithinBounds = (boid) => {
-      const margin = 20; // How close to edge before turning
-      const turnFactor = 1; // How quickly to turn
-      if (boid.x < margin) boid.dx += turnFactor;
-      if (boid.x > canvas.width - margin) boid.dx -= turnFactor;
-      if (boid.y < margin) boid.dy += turnFactor;
-      if (boid.y > canvas.height - margin) boid.dy -= turnFactor;
+      // Wrap around when boids leave the screen
+      if (boid.x < 0) boid.x += canvas.width;
+      if (boid.x > canvas.width) boid.x -= canvas.width;
+      if (boid.y < 0) boid.y += canvas.height;
+      if (boid.y > canvas.height) boid.y -= canvas.height;
     };
 
     // --- Updated to use cohesionFactor from paramsRef ---
@@ -189,9 +198,12 @@ const BoidCanvas = () => {
     // ----------------------
 
     // --- Cleanup function ---
-    return () => { /* ... same cleanup logic ... */
-        if (animationFrameId.current) { cancelAnimationFrame(animationFrameId.current); }
-        console.log("BoidCanvas cleaned up.");
+    return () => { 
+      window.removeEventListener('resize', resizeCanvas);
+      if (animationFrameId.current) { 
+        cancelAnimationFrame(animationFrameId.current); 
+      }
+      console.log("BoidCanvas cleaned up.");
     };
     // --- End Cleanup ---
 
@@ -199,71 +211,72 @@ const BoidCanvas = () => {
 
   // --- JSX ---
   return (
-    <div style={{ display: 'flex', alignItems: 'flex-start', gap: '1rem', flexWrap: 'wrap' }}>
+    <div className="boid-simulator">
       {/* Canvas Element */}
       <canvas
         ref={canvasRef}
-        style={{ width: `${canvasWidth}px`, height: `${canvasHeight}px`, borderRadius: '8px', flexShrink: 0, border: '1px solid #444' }}
+        style={{ 
+          width: '100%',
+          height: '100%',
+          borderRadius: '8px',
+          border: showBorder ? '1px solid #444' : 'none'
+        }}
       />
-      {/* Controls */}
-      <div style={{ fontSize: '0.75rem', display: 'flex', flexDirection: 'column', justifyContent: 'center', gap: '0.5rem', minWidth: '150px' }}>
+      
+      {/* Controls positioned in top left */}
+      <div className="boid-controls-topleft">
         {/* Existing Sliders */}
-        <label style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-          Speed: ({speed.toFixed(1)})
-          <input type="range" min="0.1" max="2" step="0.1" value={speed} onChange={(e) => setSpeed(parseFloat(e.target.value))} style={{ width: '100%' }} />
+        <label>
+          <span>Speed: ({speed.toFixed(1)})</span>
+          <input type="range" min="0.1" max="2" step="0.1" value={speed} onChange={(e) => setSpeed(parseFloat(e.target.value))} />
         </label>
-        <label style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-          Boid Size: ({boidSize})
-          <input type="range" min="2" max="10" step="1" value={boidSize} onChange={(e) => setBoidSize(parseInt(e.target.value, 10))} style={{ width: '100%' }} />
+        <label>
+          <span>Boid Size: ({boidSize})</span>
+          <input type="range" min="2" max="10" step="1" value={boidSize} onChange={(e) => setBoidSize(parseInt(e.target.value, 10))} />
         </label>
-        <label style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-          Visual Range: ({visualRange})
-          <input type="range" min="25" max="150" step="5" value={visualRange} onChange={(e) => setVisualRange(parseInt(e.target.value, 10))} style={{ width: '100%' }} />
+        <label>
+          <span>Visual Range: ({visualRange})</span>
+          <input type="range" min="25" max="150" step="5" value={visualRange} onChange={(e) => setVisualRange(parseInt(e.target.value, 10))} />
         </label>
-        <label style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-          Avoid Radius: ({avoidRadius})
-          <input type="range" min="5" max="50" step="1" value={avoidRadius} onChange={(e) => setAvoidRadius(parseInt(e.target.value, 10))} style={{ width: '100%' }} />
+        <label>
+          <span>Avoid Radius: ({avoidRadius})</span>
+          <input type="range" min="5" max="50" step="1" value={avoidRadius} onChange={(e) => setAvoidRadius(parseInt(e.target.value, 10))} />
         </label>
 
-        {/* --- NEW Sliders for Factors --- */}
-        <label style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-          Cohesion: ({cohesionFactor.toFixed(3)})
+        {/* Keep all the NEW Sliders for Factors */}
+        <label>
+          <span>Cohesion: ({cohesionFactor.toFixed(3)})</span>
           <input
             type="range"
             min="0"
-            max="0.02" // Adjust max as needed
+            max="0.02"
             step="0.001"
             value={cohesionFactor}
             onChange={(e) => setCohesionFactor(parseFloat(e.target.value))}
-            style={{ width: '100%' }}
           />
         </label>
-        <label style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-          Separation: ({separationFactor.toFixed(3)})
+        <label>
+          <span>Separation: ({separationFactor.toFixed(3)})</span>
           <input
             type="range"
             min="0"
-            max="0.2" // Adjust max as needed
+            max="0.2"
             step="0.005"
             value={separationFactor}
             onChange={(e) => setSeparationFactor(parseFloat(e.target.value))}
-            style={{ width: '100%' }}
           />
         </label>
-        <label style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-          Alignment: ({alignmentFactor.toFixed(3)})
+        <label>
+          <span>Alignment: ({alignmentFactor.toFixed(3)})</span>
           <input
             type="range"
             min="0"
-            max="0.2" // Adjust max as needed
+            max="0.2"
             step="0.005"
             value={alignmentFactor}
             onChange={(e) => setAlignmentFactor(parseFloat(e.target.value))}
-            style={{ width: '100%' }}
           />
         </label>
-        {/* --- End NEW Sliders --- */}
-
       </div>
     </div>
   );

@@ -55,19 +55,32 @@ const Home = () => {
       </div>
 
       {/* Boid Algorithm section THIRD */}
-      <div className="welcome-box pixel-box" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem' }}>
-        <BoidCanvas width={150} height={150} />
-        <div style={{ textAlign: 'right', flex: 1 }}>
+      <div className="welcome-box pixel-box">
+        {/* Text fully justified at the top */}
+        <div className="boid-text-header">
           <h2>Boids Algorithm Playground</h2>
-          <p>
+          <p style={{ textAlign: 'justify' }}>
             My digital playground exploring the intersections of nursing, electronics,
             engineering, and science through the lens of emergent behavior.
           </p>
-          <p>
+          <p style={{ textAlign: 'justify' }}>
             Like the boid algorithm that simulates flocking behavior through simple rules,
             my diverse interests follow patterns that create something greater than the sum
             of their parts.
           </p>
+        </div>
+        
+        {/* Boid container */}
+        <div style={{ 
+          position: 'relative',
+          width: '100%',
+          height: '400px',
+          marginTop: '1rem',
+          border: '1px solid var(--primary-color)',
+          borderRadius: '8px',
+          overflow: 'hidden'
+        }}>
+          <BoidCanvas />
         </div>
       </div>
     </div>

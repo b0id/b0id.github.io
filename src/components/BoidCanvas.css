@@ -1,0 +1,46 @@
+.boid-simulator {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.boid-controls-topleft {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid var(--primary-color);
+  border-radius: 8px;
+  padding: 10px;
+  width: 200px;
+  max-width: 30%;
+  z-index: 10;
+  font-size: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.boid-controls-topleft label {
+  display: flex;
+  flex-direction: column;
+}
+
+.boid-controls-topleft label span {
+  margin-bottom: 2px;
+  white-space: nowrap;
+}
+
+.boid-controls-topleft input[type="range"] {
+  width: 100%;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .boid-controls-topleft {
+    width: 150px;
+    padding: 8px;
+    gap: 0.25rem;
+  }
+}

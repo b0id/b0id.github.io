@@ -243,3 +243,19 @@
     font-size: 1rem;
   }
 }
+
+/* Add this to your existing Home.css */
+
+.boid-text-header {
+  margin-bottom: 1rem;
+}
+
+.boid-text-header h2 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.boid-text-header p {
+  text-align: justify;
+  margin-bottom: 0.5rem;
+}
