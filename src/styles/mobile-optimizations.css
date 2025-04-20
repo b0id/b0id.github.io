@@ -29,3 +29,35 @@
       gap: 0.5rem !important;
     }
   }
+
+  /* DESKTOP SPACE OPTIMIZATION */
+@media (min-width: 769px) {
+    /* Reduce page container padding */
+    .page-container {
+      padding: 1rem 1.5rem !important;
+    }
+    
+    /* Optimize pixel box padding */
+    .pixel-box {
+      padding: 1rem !important;
+      margin-bottom: 1rem !important;
+    }
+    
+    /* Adjust content area padding */
+    .content-area.desktop {
+      padding: 1rem !important;
+    }
+    
+    /* Reduce spacing in grid layouts */
+    .projects-two-column,
+    .nursing-two-column,
+    .engineering-two-column,
+    .sections-grid {
+      gap: 1rem !important;
+    }
+    
+    /* Adjust vertical spacing */
+    .mt-4 {
+      margin-top: 1rem !important;
+    }
+  }
