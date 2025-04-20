@@ -1,0 +1,31 @@
+@media (max-width: 768px) {
+    /* Drastically reduce page container padding */
+    .page-container {
+      padding: 0.25rem !important;
+    }
+    
+    /* Almost eliminate pixel box padding */
+    .pixel-box {
+      padding: 0.5rem !important;
+      margin-bottom: 0.5rem !important;
+    }
+    
+    /* Reduce spacing between elements */
+    .mt-4 {
+      margin-top: 0.5rem !important;
+    }
+    
+    /* Ensure content sections have minimal spacing */
+    .content-area.mobile {
+      padding: 0.25rem !important;
+    }
+    
+    /* Reduce spacing in various container types */
+    .projects-two-column,
+    .nursing-two-column,
+    .engineering-two-column,
+    .sections-grid,
+    .about-content {
+      gap: 0.5rem !important;
+    }
+  }

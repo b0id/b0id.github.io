@@ -11,6 +11,7 @@ import About from './pages/About';
 import NotFound from './pages/NotFound';
 import './App.css';
 import './styles/PageStyles.css';
+import './styles/mobile-optimizations.css'; 
 
 function App() {
   return (
