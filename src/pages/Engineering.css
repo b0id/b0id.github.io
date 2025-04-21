@@ -201,6 +201,7 @@
       text-overflow: ellipsis;
       white-space: nowrap;
       display: inline-block;
+      color: #fff !important;
     }
     
     .tab-btn.active,
