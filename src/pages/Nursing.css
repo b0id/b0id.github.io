@@ -157,3 +157,20 @@
     margin: 1rem 0;
   }
 }
+
+.github-button {
+  background-color: #236fbb !important;
+  color: white !important;
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.pixel-button {
+  display: inline-block;
+  text-decoration: none;
+}

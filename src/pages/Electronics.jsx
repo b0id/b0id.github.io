@@ -1,6 +1,122 @@
 import React, { useState } from 'react';
 import './Electronics.css';
 
+// In your Electronics.jsx file
+
+// Add this new component for the coffee roaster
+const CoffeeRoasterProject = () => {
+  const [mediaIndex, setMediaIndex] = useState(0);
+  
+  // Mixed media array with both images and videos
+  const roasterMedia = [
+    { type: 'image', src: '/coffee-roaster-1.jpg', alt: 'Coffee at Espresso Bar' },
+    { type: 'image', src: '/coffee-roaster-2.jpg', alt: 'Fluid bed coffee roaster' },
+    { type: 'image', src: '/coffee-roaster-3.jpg', alt: 'Complete 4lb roast' },
+    { type: 'image', src: '/coffee-roaster-4.jpg', alt: 'Wiring (in progress)' },
+    { type: 'video', src: '/coffee-roaster-demo.mp4', alt: 'Roasting Process Demo' },
+    { type: 'image', src: '/coffee-roaster-5.jpg', alt: 'Air flow component (Made from ceramic in my cermaic studio' },
+    { type: 'image', src: '/coffee-roaster-6.jpg', alt: 'Controller' },
+    { type: 'image', src: '/coffee-roaster-7.jpg', alt: 'Assembly' },
+    { type: 'image', src: '/coffee-roaster-8.jpg', alt: 'Roast Chamber' },
+    { type: 'image', src: '/coffee-roaster-9.jpg', alt: 'Finished Assembly' }
+  ];
+  
+  const prevMedia = () => {
+    setMediaIndex((prev) => (prev - 1 + roasterMedia.length) % roasterMedia.length);
+  };
+    
+  const nextMedia = () => {
+    setMediaIndex((prev) => (prev + 1) % roasterMedia.length);
+  };
+  
+  // Render different media types
+  const renderMedia = () => {
+    const media = roasterMedia[mediaIndex];
+    
+    if (media.type === 'video') {
+      return (
+        <div className="media-container video-container">
+          <video 
+            className="roaster-video"
+            controls
+            autoPlay={false}
+            preload="metadata"
+          >
+            <source src={media.src} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      );
+    } else { // image
+      return (
+        <div className="media-container">
+          <img 
+            src={media.src}
+            alt={media.alt}
+            className="roaster-image"
+          />
+        </div>
+      );
+    }
+  };
+  
+  return (
+    <div className="project-details">
+      <h3>Arduino-Based Coffee Roaster Controller</h3>
+      <div className="pixel-tag">Coffee Roasting</div>
+      
+      {/* Media Slideshow */}
+      <div className="project-slideshow">
+        {renderMedia()}
+        
+        {/* Navigation controls above/below the media */}
+        <div className="slideshow-controls">
+          <button 
+            onClick={prevMedia} 
+            aria-label="Previous media"
+            className="nav-button"
+          >
+            ❮
+          </button>
+          <span className="slideshow-counter">
+            {mediaIndex + 1} / {roasterMedia.length}
+          </span>
+          <button 
+            onClick={nextMedia} 
+            aria-label="Next media"
+            className="nav-button"
+          >
+            ❯
+          </button>
+        </div>
+      </div>
+      
+      <p>Minicommercial coffee roaster. The intersection of my coffee studies and electronics passion.</p>
+      
+      <div className="project-details-section">
+        <h4>Project Details</h4>
+        <ul>
+          <li><strong>Built from:</strong> Modified heat gun elements, Vacuum blower, SSR-pontentiometer</li>
+          <li><strong>Sensors:</strong> Thermocouples for bean temp & environmental temp</li>
+          <li><strong>Controls:</strong> Heat modulation, air flow controllers</li>
+          <li><strong>Software:</strong> Soon...Custom Arduino sketch with PID control--(I did not write this code only implementation)</li>
+        </ul>
+      </div>
+      
+      <div className="github-link">
+        <a 
+          href="https://github.com/elkayem/CoffeeRoaster/tree/master" 
+          target="_blank"
+          rel="noopener noreferrer"
+          className="pixel-button github-button"
+        >
+          Arduino Code
+        </a>
+      </div>
+    </div>
+  );
+};
+
 // Placeholder component for project details
 const ProjectDetails = ({ project }) => {
   if (!project) {
@@ -10,28 +126,64 @@ const ProjectDetails = ({ project }) => {
       </div>
     );
   }
+  if (project.title === "Coffee Roaster") {
+    return <CoffeeRoasterProject />;
+  }
+  
+
   return (
     <div className="project-details">
       <h3>{project.title}</h3>
       <div className="pixel-tag">{project.tag}</div>
       <p>{project.description}</p>
-      <div className="pixel-button">{project.buttonText}</div>
+      
+      {/* Add project links */}
+      <div className="project-links">
+        {project.appLink && (
+          <a 
+            href={project.appLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="pixel-button"
+          >
+            View Live App
+          </a>
+        )}
+        
+        {project.githubLink && (
+          <a 
+            href={project.githubLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="pixel-button github-button"
+            style={{ marginLeft: '0.5rem' }}
+          >
+            GitHub Repo
+          </a>
+        )}
+        
+        {/* Show the basic button text if no links provided */}
+        {!project.appLink && !project.githubLink && (
+          <div className="pixel-button">{project.buttonText}</div>
+        )}
+      </div>
     </div>
   );
 };
 
 const projects = [
   {
-    title: "Arduino-Based Coffee Roaster Controller",
+    title: "Coffee Roaster",
     tag: "Coffee Roasting",
-    description: "Controller system using Arduino and various sensors to track roast progess. The intersection of my coffee studies and electronics passion.",
+    description: "Coffee roasting system(current) using Arduino(future) and various sensors to track roast progess. The intersection of my coffee studies and electronics passion.",
     buttonText: "View Project"
   },
   {
     title: "BlackArch Panel",
     tag: "Cybersecurity",
     description: "A comprehensive CLI utility for exploring, managing, and streamlining over 2,800 BlackArch Linux security tools with keyword search, tool metadata, and automated script generation.",
-    buttonText: "View Project"
+    buttonText: "View Project",
+    githubLink: "https://github.com/b0id/blackarch-panel" // Add your GitHub repo URL here
   }, 
   
   {

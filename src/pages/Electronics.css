@@ -47,3 +47,141 @@
     margin-top: 1rem;
   }
 }
+
+.github-button {
+  background-color: #5193d4 !important;
+  color: white !important;
+}
+
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.pixel-button {
+  display: inline-block;
+  text-decoration: none;
+}
+
+/* Updated styles for Electronics.css */
+
+/* Container for media items */
+.media-container {
+  width: 100%;
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+  border-radius: 8px;
+  border: 2px solid var(--electronics-color, #8aff8a);
+  background-color: rgba(0, 0, 0, 0.2);
+  margin-bottom: 0.5rem;
+}
+
+/* Special handling for video container */
+.video-container {
+  z-index: 1; /* Ensure video stays in its container */
+}
+
+/* Image styling */
+.roaster-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Video styling */
+.roaster-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background-color: #000;
+}
+
+/* Slideshow container */
+.project-slideshow {
+  width: 100%;
+  margin: 1rem 0;
+  position: relative;
+}
+
+/* Navigation controls */
+.slideshow-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0.75rem 0;
+  width: 100%;
+  z-index: 10;
+  position: relative;
+}
+
+/* Navigation buttons */
+.nav-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--electronics-color, #8aff8a);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  margin: 0 0.5rem;
+  z-index: 20;
+}
+
+.nav-button:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.slideshow-counter {
+  margin: 0 1rem;
+  font-family: 'JetBrains Mono', monospace;
+  z-index: 20;
+}
+
+/* Project details section */
+.project-details-section {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 0.75rem;
+  margin: 1rem 0;
+}
+
+/* GitHub button */
+.github-button {
+  background-color: #24292e;
+  color: white;
+  border-color: #24292e;
+}
+
+.github-button:hover {
+  background-color: #555;
+  border-color: #555;
+  color: white;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .media-container {
+    max-height: 250px; /* Limit height on mobile */
+    padding-bottom: 70%; /* Adjust aspect ratio for mobile */
+  }
+  
+  .nav-button {
+    font-size: 1.25rem;
+    padding: 0.4rem 0.8rem;
+  }
+  
+  .slideshow-counter {
+    font-size: 0.9rem;
+  }
+}

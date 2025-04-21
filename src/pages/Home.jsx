@@ -62,7 +62,7 @@ const Home = () => {
       <div className="navigation-guide pixel-box">
         <h2>Navigation Tips</h2>
         <p>
-          This site features a custom navigation system inspired by the classic arcade game Q*bert!
+          This site features a custom navigation system inspired by the classic arcade game Q*bert! (If you are on a mobile device you might prefer to use the hamburger menu at the top left)
           Click on the isometric cubes to jump between different sections of the site.
         </p>
         <p>

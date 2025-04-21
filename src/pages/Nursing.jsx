@@ -15,7 +15,9 @@ const nursingProjects = [
     description:
       "An interactive teaching tool for nursing and microbiology students that guides users through the investigation of a simulated summer camp outbreak. Includes data visualization, symptom tracking, diagnostic tools, and differential diagnosis workflows.",
     status: "Complete",
-    buttonText: "View Project"
+    buttonText: "View Project",
+    appLink: "https://outbreakdash.vercel.app",
+    githubLink: "https://github.com/b0id/outbreakdash"
   },
   {
     title: "Atypical Antipsychotics Classifier",
@@ -23,15 +25,18 @@ const nursingProjects = [
     description:
       "A reference web app that classifies atypical antipsychotic medications by receptor activity, generation, and clinical use case. Designed to help students and clinicians visualize pharmacodynamics and side effect profiles with clarity.",
     status: "Deployed",
-    buttonText: "View Project"
+    buttonText: "View Project",
+    appLink: "https://atypicalpsychotics.vercel.app",  // Add your app URL here
+    githubLink: "https://github.com/b0id/atypical" // Add your GitHub repo URL here
   },
   {
-    title: "Patient Education Visual Aids",
-    tag: "Communication",
+    title: "Geospacial SIER model",
+    tag: "Mapping Data Science",
     description:
-      "A series of illustrated, low-literacy handouts created for use in clinical settings to explain complex conditions like hypertension, diabetes, and heart failure. Focuses on accessibility, visuals, and nurse-patient rapport.",
+      "This project simulates a leptospirosis outbreak in Eastport, Maine following a hurricane event. It implements a spatially-explicit SEIR (Susceptible-Exposed-Infectious-Recovered) model to simulate disease spread through a population and evaluates the impact of different intervention timelines.",
     status: "In Use",
-    buttonText: "View Project"
+    buttonText: "View Project",
+    githubLink: "https://github.com/b0id/eastportEpidemic"
   },
   
 ];
@@ -54,7 +59,37 @@ const NursingProjectDetails = ({ project }) => {
         <span className="status-label">Status:</span>
         <span className="status-value">{project.status}</span>
       </div>
-      <div className="pixel-button">{project.buttonText}</div>
+      
+      {/* Replace button div with links */}
+      <div className="project-links">
+        {project.appLink && (
+          <a 
+            href={project.appLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="pixel-button"
+          >
+            View Live App
+          </a>
+        )}
+        
+        {project.githubLink && (
+          <a 
+            href={project.githubLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="pixel-button github-button"
+            style={{ marginLeft: '0.5rem' }}
+          >
+            GitHub Repo
+          </a>
+        )}
+        
+        {/* Show the basic button text if no links provided */}
+        {!project.appLink && !project.githubLink && (
+          <div className="pixel-button">{project.buttonText}</div>
+        )}
+      </div>
     </div>
   );
 };
