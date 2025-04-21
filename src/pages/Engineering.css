@@ -220,4 +220,29 @@
     .intersection-points {
       grid-template-columns: 1fr;
     }
+    /* Add to Engineering.css or a global style */
+.pixel-box,
+.engineering-section-content {
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.isometric-grid,
+.tools-grid,
+.concept-list {
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: auto;
+}
+
+.pixel-box ul,
+.pixel-box ol {
+  margin-left: 1.5rem;
+  
+  max-width: 100%;
+}
+
+.pixel-box li {
+  word-break: break-word;
+}
   }
