@@ -149,6 +149,14 @@
     padding: 1.5rem;
     border-top: 4px solid var(--theme-color);
   }
+  .tab-icon,
+    .tab-label {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      display: inline-block;
+      color: #fff !important;
+    }
   
   /* --- MOBILE STYLES --- */
   @media (max-width: 900px) {
