@@ -27,13 +27,16 @@
   font-family: 'Press Start 2P', cursive;
   font-size: 1.3rem;
   color: var(--theme-color);
-  margin-bottom: 0.8rem;
+  margin-bottom: 0.1rem;
+  margin-left: 0.3rem;;
 }
 
 .footer-tagline {
   color: var(--text-secondary);
   font-size: 0.9rem;
   line-height: 1.4;
+  border: 2px solid var(--theme-color);
+  padding: 3px;
 }
 
 .footer-links {
