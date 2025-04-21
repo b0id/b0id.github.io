@@ -162,8 +162,8 @@ const SimplifiedQBertNav = ({ isMobile = false }) => {
 
       // Draw speech bubble using text from state
       if (speechBubbleText) {
-          const bubbleX = drawX + (isMobile ? 15 : 25); // Smaller offset for mobile
-          const bubbleY = drawY - (isMobile ? 30 : 50); // Higher position for mobile
+          const bubbleX = drawX + (isMobile ? 5 : 25); // Smaller offset for mobile
+          const bubbleY = drawY - (isMobile ? 28 : 50); // Higher position for mobile
           
           // Measure text and set bubble width
           ctx.font = isMobile ? 'bold 12px "JetBrains Mono", monospace' : 'bold 14px "JetBrains Mono", monospace';
