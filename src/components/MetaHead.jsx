@@ -6,7 +6,7 @@ const MetaHead = ({
   title = "b0id.dev | A Digital Polymath Playground",
   description = "Exploring the intersections of nursing, electronics, engineering, and science through the lens of emergent behavior.",
   image = "/115111701.jpeg", // Default to your profile image
-  url = "https://b0id-github-io.vercel.app/",
+  url = "https://b0id-github-io.vercel.app",
   type = "website"
 }) => {
   const location = useLocation();
@@ -15,7 +15,8 @@ const MetaHead = ({
   // Image URL must be absolute for social sharing
   const absoluteImageUrl = image.startsWith('http') 
     ? image 
-    : `${url}${image}`;
+    : `${url}${image.startsWith('/') ? '' : '/'}${image}`;
+
 
   useEffect(() => {
     // Update the document title
