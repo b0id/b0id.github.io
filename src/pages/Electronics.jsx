@@ -64,7 +64,15 @@ const CoffeeRoasterProject = () => {
     <div className="project-details">
       <h3>Arduino-Based Coffee Roaster Controller</h3>
       <div className="pixel-tag">Coffee Roasting</div>
-      
+      <div className="project-details-section">
+        <h4>Project Details</h4>
+        <ul>
+          <li><strong>Built from:</strong> Modified heat gun elements, Vacuum blower, SSR-pontentiometer</li>
+          <li><strong>Sensors:</strong> Thermocouples for bean temp & environmental temp</li>
+          <li><strong>Controls:</strong> Heat modulation, air flow controllers</li>
+          <li><strong>Software:</strong> Soon...Custom Arduino sketch with PID control--(I did not write this code only implementation)</li>
+        </ul>
+      </div>
       {/* Media Slideshow */}
       <div className="project-slideshow">
         {renderMedia()}
@@ -93,15 +101,7 @@ const CoffeeRoasterProject = () => {
       
       <p>Minicommercial coffee roaster. The intersection of my coffee studies and electronics passion.</p>
       
-      <div className="project-details-section">
-        <h4>Project Details</h4>
-        <ul>
-          <li><strong>Built from:</strong> Modified heat gun elements, Vacuum blower, SSR-pontentiometer</li>
-          <li><strong>Sensors:</strong> Thermocouples for bean temp & environmental temp</li>
-          <li><strong>Controls:</strong> Heat modulation, air flow controllers</li>
-          <li><strong>Software:</strong> Soon...Custom Arduino sketch with PID control--(I did not write this code only implementation)</li>
-        </ul>
-      </div>
+      
       
       <div className="github-link">
         <a 
