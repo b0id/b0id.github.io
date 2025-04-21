@@ -35,13 +35,13 @@ const Home = () => {
           <div className="about-content">
             <div className="about-text">
               <p>
-                I'm not built for a single lane. I'm a generalist—wired for breadth, driven by depth, and drawn to the liminal spaces between disciplines. My background spans science, electronics, systems engineering, and now, nursing—where technical mastery meets human care. I move between code and compassion, signal and soul.
+                I'm not built for a single lane. I'm a generalist—wired for breadth, driven by depth, and drawn to the liminal spaces between disciplines. My background spans science, electronics, systems engineering, and now, nursing—where technical mastery meets human care. 
               </p>
               <p>
-                I orbit around the idea of boids—simple agents following elegant rules that, together, create emergent beauty. That's how I work, too. I trust curiosity to guide the way, pattern recognition to shape understanding, and hands-on building to root abstract ideas in something real.
+                The concept of boids—simple agents following elegant rules that, together, create emergent beauty. That's how I work, too. I trust curiosity to guide the way, pattern recognition to shape understanding, and hands-on building to root abstract ideas in something real.
               </p>
               <p>
-                Where others see disjointed paths, I see convergence. I believe engineering and empathy belong in the same sentence. That clinical care can be improved by system design. That resilience isn't theory—it's lived experience, refined into practice.
+                Where others see disjointed paths, there is often convergence. I believe engineering and empathy belong in the same sentence. That clinical care can be improved by system design. That resilience isn't theory—it's lived experience, refined into practice.
               </p>
               <p>
                 I make tools, craft systems, and connect knowledge across boundaries. Whether I'm restoring old machines or designing new ones, writing code or mentoring students, debugging BIOS or exploring bioethics—it all feeds one goal:
@@ -77,7 +77,7 @@ const Home = () => {
         <div className="boid-text-header">
           <h2>Boids Algorithm Playground</h2>
           <p style={{ textAlign: 'justify' }}>
-            My digital playground exploring the intersections of nursing, electronics,
+            My digital playground exploring the intersections of nursing, crafts, coffee, business, electronics,
             engineering, and science through the lens of emergent behavior.
           </p>
           <p style={{ textAlign: 'justify' }}>
