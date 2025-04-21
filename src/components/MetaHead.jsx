@@ -15,8 +15,7 @@ const MetaHead = ({
   // Image URL must be absolute for social sharing
   const absoluteImageUrl = image.startsWith('http') 
     ? image 
-    : `${url}${image.startsWith('/') ? '' : '/'}${image}`;
-
+    : `${url.endsWith('/') ? url.slice(0, -1) : url}${image.startsWith('/') ? image : `/${image}`}`;
 
   useEffect(() => {
     // Update the document title
