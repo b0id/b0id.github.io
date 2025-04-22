@@ -35,7 +35,7 @@ const Home = () => {
           <div className="about-content">
             <div className="about-text">
               <p>
-                I'm not built for a single lane. I'm a generalist—wired for breadth, driven by depth, and drawn to the liminal spaces between disciplines. My background spans science, electronics, systems engineering, and now, nursing—where technical mastery meets human care. 
+                I'm not built for a single lane. I'm a generalist—wired for breadth, driven by depth, and drawn to the liminal spaces between disciplines. My background spans science, electronics, systems engineering,mechanics, manufacturing and now, nursing—where technical mastery meets human care. 
               </p>
               <p>
                 The concept of boids—simple agents following elegant rules that, together, create emergent beauty. That's how I work, too. I trust curiosity to guide the way, pattern recognition to shape understanding, and hands-on building to root abstract ideas in something real.
