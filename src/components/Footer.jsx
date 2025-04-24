@@ -15,7 +15,7 @@ const Footer = ({ currentTheme }) => {
             />
             <div>
               <div className="footer-logo">b0id.dev</div>
-              <div className="footer-tagline">🧑‍🏭 Engineer of Possibility — I don’t wait for permission. I build the future and hand people the tools.</div>
+              <div className="footer-tagline">🧱 Bricklayer of Redemption — I build futures where pasts don’t disqualify people from having one.</div>
             </div>
           </div>
         </div>
