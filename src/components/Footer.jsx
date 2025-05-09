@@ -15,7 +15,7 @@ const Footer = ({ currentTheme }) => {
             />
             <div>
               <div className="footer-logo">b0id.dev</div>
-              <div className="footer-tagline">🛠️ Code + Clay = me — my hands work with both ceramic glazes and GPU stacks, and they treat both like art.</div>
+              <div className="footer-tagline">🐚 Where Syntax Heals — Language failed me, but structure never did. Code became my compass.</div>
             </div>
           </div>
         </div>
