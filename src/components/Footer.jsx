@@ -15,7 +15,7 @@ const Footer = ({ currentTheme }) => {
             />
             <div>
               <div className="footer-logo">b0id.dev</div>
-              <div className="footer-tagline">🧬 Systems Thinker with a Healer’s Touch — I see healthcare the same way I see code: modular, improvable, and deeply human.</div>
+              <div className="footer-tagline">💾 Memory Has Mass — I don’t forget. I log. I version. I reflect. I teach machines to remember responsibly.</div>
             </div>
           </div>
         </div>
