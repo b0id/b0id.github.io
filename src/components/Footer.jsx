@@ -15,7 +15,7 @@ const Footer = ({ currentTheme }) => {
             />
             <div>
               <div className="footer-logo">b0id.dev</div>
-              <div className="footer-tagline">🌐 Self-Hosted Soul — Not cloud-native. I'm sovereignty by design. Full-stack resilience.</div>
+              <div className="footer-tagline">💡 Generator of Generative Systems — I don’t just automate tasks—I automate insight.</div>
             </div>
           </div>
         </div>
