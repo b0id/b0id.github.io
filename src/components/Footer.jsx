@@ -15,7 +15,7 @@ const Footer = ({ currentTheme }) => {
             />
             <div>
               <div className="footer-logo">b0id.dev</div>
-              <div className="footer-tagline">🧠 Epistemic Engineer — You’re not stockpiling knowledge—you’re engineering the infrastructure to wield it better.</div>
+              <div className="footer-tagline">🧗‍♂️ Recovery as R&D — I iterated through addiction like a system fault and emerged with new firmware.</div>
             </div>
           </div>
         </div>
