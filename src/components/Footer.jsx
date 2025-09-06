@@ -15,7 +15,7 @@ const Footer = ({ currentTheme }) => {
             />
             <div>
               <div className="footer-logo">b0id.dev</div>
-              <div className="footer-tagline">🧗‍♂️ Recovery as R&D — I iterated through addiction like a system fault and emerged with new firmware.</div>
+              <div className="footer-tagline">💡 Generator of Generative Systems — I don’t just automate tasks—I automate insight.</div>
             </div>
           </div>
         </div>
