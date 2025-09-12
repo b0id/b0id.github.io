@@ -15,7 +15,7 @@ const Footer = ({ currentTheme }) => {
             />
             <div>
               <div className="footer-logo">b0id.dev</div>
-              <div className="footer-tagline">💡 Generator of Generative Systems — I don’t just automate tasks—I automate insight.</div>
+              <div className="footer-tagline">🔄 Failure is my Fork Button — Collapse doesn’t scare me. It’s just another chance to patch and push.</div>
             </div>
           </div>
         </div>
