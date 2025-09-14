@@ -15,7 +15,7 @@ const Footer = ({ currentTheme }) => {
             />
             <div>
               <div className="footer-logo">b0id.dev</div>
-              <div className="footer-tagline">🌱 Fractal Integrity — I act the same way in my codebase, my care plans, and my convictions.</div>
+              <div className="footer-tagline">😎Catch you in the next merge conflict. </div>
             </div>
           </div>
         </div>
