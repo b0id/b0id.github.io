@@ -15,7 +15,7 @@ const Footer = ({ currentTheme }) => {
             />
             <div>
               <div className="footer-logo">b0id.dev</div>
-              <div className="footer-tagline">🔄 Failure is my Fork Button — Collapse doesn’t scare me. It’s just another chance to patch and push.</div>
+              <div className="footer-tagline">🌱 Fractal Integrity — I act the same way in my codebase, my care plans, and my convictions.</div>
             </div>
           </div>
         </div>
