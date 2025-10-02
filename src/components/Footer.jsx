@@ -15,7 +15,7 @@ const Footer = ({ currentTheme }) => {
             />
             <div>
               <div className="footer-logo">b0id.dev</div>
-              <div className="footer-tagline">💾 Memory Has Mass — I don’t forget. I log. I version. I reflect. I teach machines to remember responsibly.</div>
+              <div className="footer-tagline">🧗‍♂️ Recovery as R&D — I iterated through addiction like a system fault and emerged with new firmware.</div>
             </div>
           </div>
         </div>
