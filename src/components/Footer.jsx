@@ -15,7 +15,7 @@ const Footer = ({ currentTheme }) => {
             />
             <div>
               <div className="footer-logo">b0id.dev</div>
-              <div className="footer-tagline">🧱 Bricklayer of Redemption — I build futures where pasts don’t disqualify people from having one.</div>
+              <div className="footer-tagline">💾 Memory Has Mass — I don’t forget. I log. I version. I reflect. I teach machines to remember responsibly.</div>
             </div>
           </div>
         </div>
