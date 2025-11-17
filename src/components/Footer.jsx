@@ -15,7 +15,7 @@ const Footer = ({ currentTheme }) => {
             />
             <div>
               <div className="footer-logo">b0id.dev</div>
-              <div className="footer-tagline">🧩 Problem-Solving Polyglot — From microcontrollers to mental health, if there’s a system, I can make it talk.</div>
+              <div className="footer-tagline">🧗‍♂️ Recovery as R&D — I iterated through addiction like a system fault and emerged with new firmware.</div>
             </div>
           </div>
         </div>
