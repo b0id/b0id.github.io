@@ -15,7 +15,7 @@ const Footer = ({ currentTheme }) => {
             />
             <div>
               <div className="footer-logo">b0id.dev</div>
-              <div className="footer-tagline">🛠️ From Wrenches to Writeups — I've built fluid bed roasters and AI orchestration layers. If it can be engineered, I am already halfway through it.</div>
+              <div className="footer-tagline">🛠️ Code + Clay = me — my hands work with both ceramic glazes and GPU stacks, and they treat both like art.</div>
             </div>
           </div>
         </div>
