@@ -15,7 +15,7 @@ const Footer = ({ currentTheme }) => {
             />
             <div>
               <div className="footer-logo">b0id.dev</div>
-              <div className="footer-tagline">🌱 Fractal Integrity — I act the same way in my codebase, my care plans, and my convictions.</div>
+              <div className="footer-tagline">🦉 Student of Deep Time — my vision extends beyond quarterly cycles—I am architecting for epochs.</div>
             </div>
           </div>
         </div>
