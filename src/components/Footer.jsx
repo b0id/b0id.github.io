@@ -15,7 +15,7 @@ const Footer = ({ currentTheme }) => {
             />
             <div>
               <div className="footer-logo">b0id.dev</div>
-              <div className="footer-tagline">🧵 Cross-Domain Thread Puller — I trace threads between science, systems, ethics, and care—and weave something better.</div>
+              <div className="footer-tagline">🧱 Bricklayer of Redemption — I build futures where pasts don’t disqualify people from having one.</div>
             </div>
           </div>
         </div>
