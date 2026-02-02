@@ -15,7 +15,7 @@ const Footer = ({ currentTheme }) => {
             />
             <div>
               <div className="footer-logo">b0id.dev</div>
-              <div className="footer-tagline">🌹Roses are red, violets are blue, intelligence is learned, can you learn too?</div>
+              <div className="footer-tagline">😎Catch you in the next merge conflict. </div>
             </div>
           </div>
         </div>
