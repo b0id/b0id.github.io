@@ -15,7 +15,7 @@ const Footer = ({ currentTheme }) => {
             />
             <div>
               <div className="footer-logo">b0id.dev</div>
-              <div className="footer-tagline">🧭 Human GPS for Complex Shit — I don't just troubleshoot. I map. I navigate. I rebuild the signal path.</div>
+              <div className="footer-tagline">💡 Generator of Generative Systems — I don't just automate tasks—I automate insight.</div>
             </div>
           </div>
         </div>
