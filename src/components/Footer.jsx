@@ -15,7 +15,7 @@ const Footer = ({ currentTheme }) => {
             />
             <div>
               <div className="footer-logo">b0id.dev</div>
-              <div className="footer-tagline">🦉 Student of Deep Time — my vision extends beyond quarterly cycles—I am architecting for epochs.</div>
+              <div className="footer-tagline">🎛️ Bash-Powered Brainwaves — my scripts are philosophies. Every terminal window is a mirror of how I think.</div>
             </div>
           </div>
         </div>
