@@ -15,7 +15,7 @@ const Footer = ({ currentTheme }) => {
             />
             <div>
               <div className="footer-logo">b0id.dev</div>
-              <div className="footer-tagline">🧱 Bricklayer of Redemption — I build futures where pasts don't disqualify people from having one.</div>
+              <div className="footer-tagline">😎Catch you in the next merge conflict. </div>
             </div>
           </div>
         </div>
