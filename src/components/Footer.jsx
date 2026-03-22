@@ -15,7 +15,7 @@ const Footer = ({ currentTheme }) => {
             />
             <div>
               <div className="footer-logo">b0id.dev</div>
-              <div className="footer-tagline">😎Catch you in the next merge conflict. </div>
+              <div className="footer-tagline">🐚 Where Syntax Heals — Language failed me, but structure never did. Code became my compass.</div>
             </div>
           </div>
         </div>
