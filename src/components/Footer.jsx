@@ -15,7 +15,7 @@ const Footer = ({ currentTheme }) => {
             />
             <div>
               <div className="footer-logo">b0id.dev</div>
-              <div className="footer-tagline">🎛️ Bash-Powered Brainwaves — my scripts are philosophies. Every terminal window is a mirror of how I think.</div>
+              <div className="footer-tagline">🧭 Human GPS for Complex Shit — I don't just troubleshoot. I map. I navigate. I rebuild the signal path.</div>
             </div>
           </div>
         </div>
